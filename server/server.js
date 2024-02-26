@@ -6,10 +6,15 @@ const path = require('path');
 const PORT = 8080;
 
 //app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, '../dist/streamsearch')));
+//app.use(express.static(path.join(__dirname, '../dist/streamsearch/browser')));
+app.use(express.static(path.join(__dirname, '../src')));
 
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, "../dist/streamsearch/browser/index.html"));
+    console.log("Body Sent")
+});*/
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, "../src/index.html"));
     console.log("Body Sent")
 });
 
