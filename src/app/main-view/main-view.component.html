@@ -1,1 +1,14 @@
-<p>main-view works!</p>
+<p *ngIf="controllerService.currentView === DisplayModesEnum.Welcome">
+    Welcome!
+</p>
+<div class="show-list" *ngIf="controllerService.currentView === DisplayModesEnum.ShowsList">
+    <app-show-list-element
+        *ngFor="let show of controllerService.shows"
+        [show]="show"
+    >
+    </app-show-list-element>
+</div>
+<app-results-view *ngIf="controllerService.currentView === DisplayModesEnum.Results"></app-results-view>
+<p *ngIf="controllerService.currentView === DisplayModesEnum.Error">
+    An error has occurred!
+</p>

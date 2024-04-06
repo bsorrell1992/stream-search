@@ -1,5 +1,4 @@
 // This file contains an object mapping streaming service identifiers to their values
-
 export const STREAMING_SERVICES = {
     NETFLIX: "netflix",
     PRIME: "prime",

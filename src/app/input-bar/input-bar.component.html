@@ -1,5 +1,5 @@
-<form>
-    <select name="country" id="country">
+<form [formGroup]="showForm" (ngSubmit)="onSubmit()">
+    <select #countrySelect name="country" id="country" formControlName="country" (change)="this.displayListService.updateDisplay(countrySelect.value)">
         <option value=""></option>
         <option value="us">United States</option>
         <option value="ar">Argentina</option>
@@ -60,5 +60,6 @@
         <option value="gb">United Kingdom</option>
         <option value="vn">Vietnam</option>
     </select>
-    <input type="text" id="show-title" name="show-title">
+    <input type="text" id="show-title" name="show-title" formControlName="title">
+    <input type="submit" value="Search">
 </form>

@@ -1,23 +1,23 @@
 <form>
-    <app-streaming-service name="stream1" value="all4" label="All 4"></app-streaming-service>
-    <app-streaming-service name="stream2" value="prime" label="Amazon Prime Video"></app-streaming-service>
-    <app-streaming-service name="stream3" value="apple" label="Apple TV+"></app-streaming-service>
-    <app-streaming-service name="stream4" value="iplayer" label="BBC iPlayer"></app-streaming-service>
-    <app-streaming-service name="stream5" value="britbox" label="BritBox"></app-streaming-service>
-    <app-streaming-service name="stream6" value="crave" label="Crave"></app-streaming-service>
-    <app-streaming-service name="stream7" value="curiosity" label="Curiosity Stream"></app-streaming-service>
-    <app-streaming-service name="stream8" value="disney" label="Disney+"></app-streaming-service>
-    <app-streaming-service name="stream9" value="hbo" label="HBO Max"></app-streaming-service>
-    <app-streaming-service name="stream10" value="hotstar" label="Hotstar"></app-streaming-service>
-    <app-streaming-service name="stream11" value="hulu" label="Hulu"></app-streaming-service>
-    <app-streaming-service name="stream12" value="mubi" label="Mubi"></app-streaming-service>
-    <app-streaming-service name="stream13" value="netflix" label="Netflix"></app-streaming-service>
-    <app-streaming-service name="stream14" value="now" label="Now"></app-streaming-service>
-    <app-streaming-service name="stream15" value="peacock" label="Peacock"></app-streaming-service>
-    <app-streaming-service name="stream16" value="paramount" label="Paramount+"></app-streaming-service>
-    <app-streaming-service name="stream17" value="showtime" label="Showtime"></app-streaming-service>
-    <app-streaming-service name="stream18" value="stan" label="Stan"></app-streaming-service>
-    <app-streaming-service name="stream19" value="starz" label="Starz"></app-streaming-service>
-    <app-streaming-service name="stream20" value="wow" label="Wow"></app-streaming-service>
-    <app-streaming-service name="stream21" value="zee5" label="Zee5"></app-streaming-service>
+    <app-streaming-service name="stream1" value="all4" label="All 4" *ngIf="this.displayListService.display['all4']"></app-streaming-service>
+    <app-streaming-service name="stream2" value="prime" label="Amazon Prime Video" *ngIf="this.displayListService.display['prime']"></app-streaming-service>
+    <app-streaming-service name="stream3" value="apple" label="Apple TV+" *ngIf="this.displayListService.display['apple']"></app-streaming-service>
+    <app-streaming-service name="stream4" value="iplayer" label="BBC iPlayer" *ngIf="this.displayListService.display['iplayer']"></app-streaming-service>
+    <app-streaming-service name="stream5" value="britbox" label="BritBox" *ngIf="this.displayListService.display['britbox']"></app-streaming-service>
+    <app-streaming-service name="stream6" value="crave" label="Crave" *ngIf="this.displayListService.display['crave']"></app-streaming-service>
+    <app-streaming-service name="stream7" value="curiosity" label="Curiosity Stream" *ngIf="this.displayListService.display['curiosity']"></app-streaming-service>
+    <app-streaming-service name="stream8" value="disney" label="Disney+" *ngIf="this.displayListService.display['disney']"></app-streaming-service>
+    <app-streaming-service name="stream9" value="hbo" label="HBO Max" *ngIf="this.displayListService.display['hbo']"></app-streaming-service>
+    <app-streaming-service name="stream10" value="hotstar" label="Hotstar" *ngIf="this.displayListService.display['hotstar']"></app-streaming-service>
+    <app-streaming-service name="stream11" value="hulu" label="Hulu" *ngIf="this.displayListService.display['hulu']"></app-streaming-service>
+    <app-streaming-service name="stream12" value="mubi" label="Mubi" *ngIf="this.displayListService.display['mubi']"></app-streaming-service>
+    <app-streaming-service name="stream13" value="netflix" label="Netflix" *ngIf="this.displayListService.display['netflix']"></app-streaming-service>
+    <app-streaming-service name="stream14" value="now" label="Now" *ngIf="this.displayListService.display['now']"></app-streaming-service>
+    <app-streaming-service name="stream15" value="peacock" label="Peacock" *ngIf="this.displayListService.display['peacock']"></app-streaming-service>
+    <app-streaming-service name="stream16" value="paramount" label="Paramount+" *ngIf="this.displayListService.display['paramount']"></app-streaming-service>
+    <app-streaming-service name="stream17" value="showtime" label="Showtime" *ngIf="this.displayListService.display['showtime']"></app-streaming-service>
+    <app-streaming-service name="stream18" value="stan" label="Stan" *ngIf="this.displayListService.display['stan']"></app-streaming-service>
+    <app-streaming-service name="stream19" value="starz" label="Starz" *ngIf="this.displayListService.display['starz']"></app-streaming-service>
+    <app-streaming-service name="stream20" value="wow" label="Wow" *ngIf="this.displayListService.display['wow']"></app-streaming-service>
+    <app-streaming-service name="stream21" value="zee5" label="Zee5" *ngIf="this.displayListService.display['zee4']"></app-streaming-service>
 </form>

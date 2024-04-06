@@ -1,0 +1,14 @@
+.show-list {
+    height: 100%;
+    overflow-y: auto;
+}
+
+app-show-list-element {
+    display: inline-block;
+    width: 25%;
+    height: 30%;
+}
+
+app-show-list-element:nth-child(3n + 1), app-show-list-element:nth-child(3n + 2) {
+    margin-right: 20px;
+}

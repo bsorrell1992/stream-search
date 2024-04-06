@@ -1,6 +1,8 @@
 import { STREAMING_SERVICES as SS } from "./stream-services.constant";
 
-export const COUNTRIES = {
+export const COUNTRIES: {
+    [country: string]: string[]
+} = {
     "ae": [
         SS.APPLETV,
         SS.CURIOSITY,
