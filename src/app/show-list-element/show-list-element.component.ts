@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SecurityContext } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ControllerService } from '../controller.service';
-import { DisplayModes } from '../../../constants/controller.constant';
+import { ResultsListService } from '../results-list.service';
 
 @Component({
   selector: 'app-show-list-element',
@@ -14,12 +14,15 @@ export class ShowListElementComponent implements OnInit {
   @Input() show: any;
   url: SafeResourceUrl | null = "";
 
-  constructor(public controllerService: ControllerService, private domSanitizer: DomSanitizer) {}
+  constructor(public controllerService: ControllerService, 
+    public resultsListService: ResultsListService,
+    private domSanitizer: DomSanitizer) {}
 
   ngOnInit() {
   }
 
-  public clickHandler = () => {
-    this.controllerService.currentView = DisplayModes.Results;
+  clickHandler() {
+    this.controllerService.showResults();
+    this.resultsListService.setShow(this.show);
   }
 }

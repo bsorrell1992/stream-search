@@ -4,6 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { ControllerService } from '../controller.service';
 import { DisplayModes } from '../../../constants/controller.constant';
 import { ShowListElementComponent } from '../show-list-element/show-list-element.component';
+import { ShowListService } from '../show-list.service';
 
 @Component({
   selector: 'app-main-view',
@@ -15,5 +16,5 @@ import { ShowListElementComponent } from '../show-list-element/show-list-element
 export class MainViewComponent {
   DisplayModesEnum = DisplayModes;
 
-  constructor(public controllerService: ControllerService) { }
+  constructor(public controllerService: ControllerService, public showListService: ShowListService) { }
 }

@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { DisplayModes } from '../../constants/controller.constant';
 import { BackendService } from './backend.service';
+import { ShowListService } from './show-list.service';
+import { ResultsListService } from './results-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControllerService {
   currentView = DisplayModes.Welcome;
-  shows: any = [];
 
-  constructor(public backendService: BackendService) { }
+  constructor(public backendService: BackendService, 
+    public showListService: ShowListService,
+    public resultsListService: ResultsListService) { }
 
   switchToWelcome() { this.currentView = DisplayModes.Welcome; }
 
-  searchForShow(input: {title: string, country: string}) {
+  public searchForShow(input: {title: string, country: string}) {
     this.backendService.fetchShows(input).then(
       (shows) => {
-        this.shows = shows;
+        this.showListService.setShows(shows); 
         this.currentView = DisplayModes.ShowsList;
       },
       (error) => {
@@ -25,4 +28,6 @@ export class ControllerService {
       }
     );
   }
+
+  showResults() { this.currentView = DisplayModes.Results; }
 }

@@ -2,11 +2,18 @@
     Welcome!
 </p>
 <div class="show-list" *ngIf="controllerService.currentView === DisplayModesEnum.ShowsList">
-    <app-show-list-element
-        *ngFor="let show of controllerService.shows"
-        [show]="show"
-    >
-    </app-show-list-element>
+    <ng-container *ngIf="showListService.shows.length > 0">
+        <app-show-list-element
+            *ngFor="let show of showListService.shows"
+            [show]="show"
+        >
+        </app-show-list-element>
+    </ng-container>
+    <ng-container *ngIf="showListService.shows.length == 0">
+        <p>
+            No shows found. Try searching for a different title.
+        </p>
+    </ng-container>
 </div>
 <app-results-view *ngIf="controllerService.currentView === DisplayModesEnum.Results"></app-results-view>
 <p *ngIf="controllerService.currentView === DisplayModesEnum.Error">

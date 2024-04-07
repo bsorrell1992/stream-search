@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="displayListService.resultsStreams">
     <app-streaming-service name="stream1" value="all4" label="All 4" *ngIf="this.displayListService.display['all4']"></app-streaming-service>
     <app-streaming-service name="stream2" value="prime" label="Amazon Prime Video" *ngIf="this.displayListService.display['prime']"></app-streaming-service>
     <app-streaming-service name="stream3" value="apple" label="Apple TV+" *ngIf="this.displayListService.display['apple']"></app-streaming-service>
