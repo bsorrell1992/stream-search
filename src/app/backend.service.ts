@@ -60,6 +60,7 @@ export class BackendService {
         title: input.title,
         country: input.country,
         show_type: 'all',
+        series_granularity: 'show',
         output_language: 'en'
       },
       headers: {
