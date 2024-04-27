@@ -1,5 +1,6 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { Countries } from './models/countries.model';
 
 const staticData = [
   {
@@ -50,7 +51,7 @@ const staticData = [
 })
 export class BackendService {
 
-  constructor() { }
+  constructor(public httpClient: HttpClient) { }
 
   async fetchShows(input: {title: string, country: string}) {
     /*const response = await axios.request({
@@ -70,5 +71,24 @@ export class BackendService {
     });
     return response.data;*/
     return staticData;
+  }
+
+  fetchCountries() : Countries {
+    /*const response = await axios.request({
+      method: 'GET',
+      url: 'https://streaming-availability.p.rapidapi.com/countries',
+      headers: {
+        'X-RapidAPI-Key': '',
+        'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+      }
+    });
+    return response.data;*/
+    let params = new HttpParams({
+      fromObject: {
+        method: 'GET',
+        url: 'https://streaming-availability.p.rapidapi.com/countries'
+      }
+    });
+    return {};
   }
 }

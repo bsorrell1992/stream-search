@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { COUNTRIES } from '../../constants/countries.constant';
+import { Injectable } from '@angular/core'; 
 import { FormControl, FormGroup } from '@angular/forms';
+import { CountriesService } from './countries.service';
 
 @Injectable({
   providedIn: 'root'
@@ -56,10 +56,10 @@ export class DisplayListService {
     zee5: new FormControl(false, {nonNullable: true})
   })
 
-  constructor() { }
+  constructor(public countriesService: CountriesService) { }
 
   updateDisplay(country: string) {
-    let streamingServices = COUNTRIES[country];
+    let streamingServices = Object.keys(this.countriesService.getServices(country));
     for (let service of Object.keys(this.display)) {
       this.display[service] = country.length === 0 || streamingServices.includes(service);
     }

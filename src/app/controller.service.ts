@@ -16,7 +16,7 @@ export class ControllerService {
 
   switchToWelcome() { this.currentView = DisplayModes.Welcome; }
 
-  public searchForShow(input: {title: string, country: string}) {
+  searchForShow(input: {title: string, country: string}) {
     this.backendService.fetchShows(input).then(
       (shows) => {
         this.showListService.setShows(shows); 
