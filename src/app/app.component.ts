@@ -4,6 +4,7 @@ import { StreamListComponent } from './stream-list/stream-list.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { InputBarComponent } from './input-bar/input-bar.component';
 import { DisplayModes } from '../../constants/controller.constant';
+import { ShowListService } from './show-list.service';
 
 @Component({
   selector: 'app-root',
@@ -17,11 +18,11 @@ export class AppComponent {
   DisplayModesEnum = DisplayModes;
   displayMode = DisplayModes.Welcome;
 
-  switchView(displayMode: DisplayModes) {
-    this.displayMode = displayMode;
-  }
+  constructor(private showListService: ShowListService) {}
 
-  switchToShows() {
-    this.switchView(this.DisplayModesEnum.ShowsList);
+  protected searchForShow(data: {title: string, country: string}) {
+    this.displayMode = this.DisplayModesEnum.ShowsList;
+
+    this.showListService.searchForShow(data);
   }
 }

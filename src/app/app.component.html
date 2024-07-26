@@ -11,7 +11,7 @@
           <app-main-view [displayMode]="this.displayMode"></app-main-view>
         </div>
         <div class="ss-input-bar">
-          <app-input-bar (showResults)="switchView(this.DisplayModesEnum.Results)"></app-input-bar>
+          <app-input-bar (onSearch)="searchForShow($event)"></app-input-bar>
         </div>
       </div>
     </div>
