@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { DisplayListService } from '../display-list.service';
-import { ControllerService } from '../controller.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -17,7 +16,7 @@ export class InputBarComponent {
     country: new FormControl('', {nonNullable: true})
   })
 
-  constructor(public displayListService: DisplayListService, public controllerService: ControllerService) { }
+  constructor(public displayListService: DisplayListService) { }
 
   onSubmit() {
     const formVals = this.showForm.value,
