@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { ControllerService } from '../controller.service';
 import { DisplayModes } from '../../../constants/controller.constant';
@@ -14,6 +14,7 @@ import { ResultsListComponent } from '../results-list/results-list.component';
   styleUrl: './main-view.component.css'
 })
 export class MainViewComponent {
+  @Input() displayMode = 0;
   DisplayModesEnum = DisplayModes;
 
   constructor(public controllerService: ControllerService, public showListService: ShowListService) { }

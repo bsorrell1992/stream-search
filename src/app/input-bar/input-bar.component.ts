@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { DisplayListService } from '../display-list.service';
 import { ControllerService } from '../controller.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './input-bar.component.css'
 })
 export class InputBarComponent {
+  @Output() showResults = new EventEmitter<void>();
   showForm = new FormGroup({
     title: new FormControl('', {nonNullable: true}),
     country: new FormControl('', {nonNullable: true})
@@ -22,9 +23,11 @@ export class InputBarComponent {
     const formVals = this.showForm.value,
       titleVal = formVals.title,
       countryVal = formVals.country;
-    this.controllerService.searchForShow({
+      this.showResults.emit();
+    /*this.controllerService.searchForShow({
       title: titleVal ? titleVal : '',
       country: countryVal ? countryVal : 'us'
-    });
+    });*/
+
   }
 }

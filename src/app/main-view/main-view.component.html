@@ -1,7 +1,7 @@
-<p *ngIf="controllerService.currentView === DisplayModesEnum.Welcome">
+<p *ngIf="displayMode === DisplayModesEnum.Welcome">
     Welcome!
 </p>
-<div class="show-list" *ngIf="controllerService.currentView === DisplayModesEnum.ShowsList">
+<div class="show-list" *ngIf="displayMode === DisplayModesEnum.ShowsList">
     <ng-container *ngIf="showListService.shows.length > 0">
         <app-show-list-element
             *ngFor="let show of showListService.shows"
@@ -15,9 +15,9 @@
         </p>
     </ng-container>
 </div>
-<ng-container *ngIf="controllerService.currentView === DisplayModesEnum.Results">
+<ng-container *ngIf="displayMode === DisplayModesEnum.Results">
     <app-results-list></app-results-list>
 </ng-container>
-<p *ngIf="controllerService.currentView === DisplayModesEnum.Error">
+<p *ngIf="displayMode === DisplayModesEnum.Error">
     An error has occurred!
 </p>
