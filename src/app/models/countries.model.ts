@@ -1,6 +1,6 @@
 import { StreamingService } from "./streaming-service.model"
 
-interface Country {
+export interface Country {
     countryCode: string,
     name: string,
     services: {

@@ -1,12 +1,14 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { DisplayListService } from '../display-list.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CountriesService } from '../countries.service';
+import { CountriesListElementComponent } from '../countries-list-element/countries-list-element.component';
 
 @Component({
   selector: 'app-input-bar',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgFor, CountriesListElementComponent],
   templateUrl: './input-bar.component.html',
   styleUrl: './input-bar.component.css'
 })

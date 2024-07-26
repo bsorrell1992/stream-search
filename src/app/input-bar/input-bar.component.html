@@ -1,7 +1,12 @@
 <form [formGroup]="showForm" (ngSubmit)="onSubmit()">
     <select #countrySelect name="country" id="country" formControlName="country" (change)="this.displayListService.updateDisplay(countrySelect.value)">
         <option value=""></option>
-        <option value="us">United States</option>
+        <app-countries-list-element
+            *ngFor="let country of countriesService.getCountries()"
+            [code]="country.countryCode"
+            [name]="country.name"
+        ></app-countries-list-element>
+        <!--<option value="us">United States</option>
         <option value="ar">Argentina</option>
         <option value="au">Australia</option>
         <option value="at">Austria</option>
@@ -58,7 +63,7 @@
         <option value="ua">Ukraine</option>
         <option value="ae">United Emirates</option>
         <option value="gb">United Kingdom</option>
-        <option value="vn">Vietnam</option>
+        <option value="vn">Vietnam</option>-->
     </select>
     <input type="text" id="show-title" name="show-title" formControlName="title">
     <input type="submit" value="Search">
