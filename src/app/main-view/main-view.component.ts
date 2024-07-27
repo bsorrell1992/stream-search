@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { DisplayModes } from '../../../constants/controller.constant';
 import { ShowListElementComponent } from '../show-list-element/show-list-element.component';
 import { ShowListService } from '../show-list.service';
 import { ResultsListComponent } from '../results-list/results-list.component';
+import { MainViewControllerService } from '../main-view-controller.service';
 
 @Component({
   selector: 'app-main-view',
@@ -13,8 +14,14 @@ import { ResultsListComponent } from '../results-list/results-list.component';
   styleUrl: './main-view.component.css'
 })
 export class MainViewComponent {
-  @Input() displayMode = 0;
   DisplayModesEnum = DisplayModes;
+  protected currentShow: any;
 
-  constructor(public showListService: ShowListService) { }
+  constructor(public showListService: ShowListService,
+    public mainViewControllerService: MainViewControllerService) { }
+
+  setShow(show: any): void {
+    this.currentShow = show;
+    this.mainViewControllerService.switchToResults();
+  }
 }

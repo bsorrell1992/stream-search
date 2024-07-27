@@ -4,6 +4,7 @@ import { DisplayListService } from '../display-list.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { CountriesListElementComponent } from '../countries-list-element/countries-list-element.component';
+import { ShowListService } from '../show-list.service';
 
 @Component({
   selector: 'app-input-bar',
@@ -13,19 +14,20 @@ import { CountriesListElementComponent } from '../countries-list-element/countri
   styleUrl: './input-bar.component.css'
 })
 export class InputBarComponent {
-  @Output() onSearch = new EventEmitter<{title: string, country: string}>();
   showForm = new FormGroup({
     title: new FormControl('', {nonNullable: true}),
     country: new FormControl('', {nonNullable: true})
   })
 
   constructor(public countriesService: CountriesService,
-    public displayListService: DisplayListService) { }
+    public displayListService: DisplayListService,
+    public showListService: ShowListService) { }
 
   onSubmit() {
     const formVals: Partial<{title: string, country: string}> = this.showForm.value,
       titleVal: string | undefined = formVals.title,
       countryVal: string | undefined = formVals.country;
-    this.onSearch.emit({title: titleVal ? titleVal : '', country: countryVal ? countryVal : 'us'});
+    
+    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : 'us'});
   }
 }

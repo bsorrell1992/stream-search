@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ResultsListElementComponent } from '../results-list-element/results-list-element.component';
 import { NgFor } from '@angular/common';
-import { ResultsListService } from '../results-list.service';
 
 @Component({
   selector: 'app-results-list',
@@ -11,5 +10,5 @@ import { ResultsListService } from '../results-list.service';
   styleUrl: './results-list.component.css'
 })
 export class ResultsListComponent {
-  constructor(public resultsListService: ResultsListService) {}
+  @Input() show: any;
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
+import { MainViewControllerService } from './main-view-controller.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,13 +8,17 @@ import { BackendService } from './backend.service';
 export class ShowListService {
   shows: any = [];
 
-  constructor(private backendService: BackendService) { }
-
-  setShows(shows: any) { this.shows = shows; }
+  constructor(private backendService: BackendService,
+    private mainViewControllerService: MainViewControllerService) { }
 
   resetShows() { this.shows = []; }
 
-  searchForShow(input: {title: string, country: string}) {
-    this.backendService.fetchShows(input);
+  searchForShow(input: {title: string, country: string}): void {
+    this.backendService.fetchShows(input).then((shows) => {
+      this.shows = shows;
+      this.mainViewControllerService.switchToShowsList();
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

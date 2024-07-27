@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, SecurityContext } from '@angular/core';
+import { Component, Input, Output, OnInit, SecurityContext, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { ResultsListService } from '../results-list.service';
 
 @Component({
   selector: 'app-show-list-element',
@@ -11,15 +10,15 @@ import { ResultsListService } from '../results-list.service';
 })
 export class ShowListElementComponent implements OnInit {
   @Input() show: any;
+  @Output() onSelect = new EventEmitter<any>();
   url: SafeResourceUrl | null = "";
 
-  constructor(public resultsListService: ResultsListService,
-    private domSanitizer: DomSanitizer) {}
+  constructor(private domSanitizer: DomSanitizer) {}
 
   ngOnInit() {
   }
 
   clickHandler() {
-    this.resultsListService.setShow(this.show);
+    this.onSelect.emit(this.show);
   }
 }
