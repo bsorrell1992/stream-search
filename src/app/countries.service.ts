@@ -10,15 +10,11 @@ export class CountriesService {
   countries: Countries = {};
 
   constructor(public backendService: BackendService) {
-    /*backendService.fetchCountries().then(
-      (countries: Countries) => {
-        this.countries = countries;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );*/
-    this.countries = backendService.fetchCountries();
+    backendService.fetchCountries().then((countries) => {
+      this.countries = countries;
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   getCountries(): Country[] {
@@ -30,7 +26,7 @@ export class CountriesService {
       else if (aName === bName) return 0;
       else return 1;
     });
-    
+
     return countriesArray;
   }
 

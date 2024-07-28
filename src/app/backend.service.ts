@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Countries } from './models/countries.model';
+import axios from 'axios';
 
 const staticData = [
   {
@@ -73,7 +74,7 @@ export class BackendService {
     return staticData;
   }
 
-  fetchCountries() : Countries {
+  async fetchCountries() : Promise<Countries> {
     /*const response = await axios.request({
       method: 'GET',
       url: 'https://streaming-availability.p.rapidapi.com/countries',
