@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { StreamingServiceComponent } from '../streaming-service/streaming-service.component';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
 import { DisplayListService } from '../display-list.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-stream-list',
   standalone: true,
-  imports: [StreamingServiceComponent, NgIf, ReactiveFormsModule],
+  imports: [NgIf, NgFor, ReactiveFormsModule],
   templateUrl: './stream-list.component.html',
   styleUrl: './stream-list.component.css'
 })

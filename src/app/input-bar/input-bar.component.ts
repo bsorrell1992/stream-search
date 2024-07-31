@@ -22,6 +22,10 @@ export class InputBarComponent {
     public displayListService: DisplayListService,
     public showListService: ShowListService) { }
 
+  onChange(country: string) {
+    this.displayListService.selectedCountryChange$.next(country);
+  }
+
   onSubmit() {
     const formVals: Partial<{title: string, country: string}> = this.showForm.value,
       titleVal: string | undefined = formVals.title,

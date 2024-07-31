@@ -84,12 +84,6 @@ export class BackendService {
       }
     });
     return response.data;*/
-    let params = new HttpParams({
-      fromObject: {
-        method: 'GET',
-        url: 'https://streaming-availability.p.rapidapi.com/countries'
-      }
-    });
     return {};
   }
 }
