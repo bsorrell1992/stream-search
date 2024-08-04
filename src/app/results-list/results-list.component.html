@@ -1,6 +1,6 @@
 <div>
     <app-results-list-element
-        *ngFor="let streamingService of show.streamingInfo.us"
+        *ngFor="let streamingService of show.streamingOptions[showListService.country]"
         [streamingService]="streamingService"
     >
     </app-results-list-element>

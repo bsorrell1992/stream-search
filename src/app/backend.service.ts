@@ -8,7 +8,7 @@ const staticData = [
     type: "movie",
     title: "The Batman",
     overview: "A killer targets Gotham's elite sending Batman on an investigation. As evidence mounts, he must forge new relationships, unmask the culprit, and bring justice to corruption.",
-    streamingInfo: {
+    streamingOptions: {
       us: [
         {
           service: "apple",
@@ -43,7 +43,7 @@ const staticData = [
     type: "series",
     title: "Batman: The Animated Series",
     overview: "The Dark Knight battles...",
-    streamingInfo: {}
+    streamingOptions: {}
   }
 ];
 
@@ -57,13 +57,11 @@ export class BackendService {
   async fetchShows(input: {title: string, country: string}) {
     /*const response = await axios.request({
       method: 'GET',
-      url: 'https://streaming-availability.p.rapidapi.com/search/title',
+      url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
       params: {
         title: input.title,
         country: input.country,
-        show_type: 'all',
         series_granularity: 'show',
-        output_language: 'en'
       },
       headers: {
         'X-RapidAPI-Key': '',

@@ -24,6 +24,15 @@ export class DisplayListService {
     })
   }
 
+  getSelectedStreamingServices(): string[] {
+    const controls = this.streamingServiceControls.controls;
+    let selected: string[] = [];
+    for (const control in controls) {
+      if (controls[control].value) selected.push(control);
+    }
+    return selected;
+  }
+
   updateStreamingServices(selectedCountryCode: string): void {
     this.updateChecked();
     this.updateControls(selectedCountryCode);

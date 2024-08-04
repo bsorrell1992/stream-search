@@ -4,11 +4,12 @@ import { DisplayListService } from '../display-list.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CountriesService } from '../countries.service';
 import { ShowListService } from '../show-list.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-input-bar',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [ReactiveFormsModule, NgFor, RouterLink],
   templateUrl: './input-bar.component.html',
   styleUrl: './input-bar.component.css'
 })

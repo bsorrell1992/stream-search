@@ -1,10 +1,11 @@
 import { Component, Input, Output, OnInit, SecurityContext, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-show-list-element',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './show-list-element.component.html',
   styleUrl: './show-list-element.component.css'
 })
