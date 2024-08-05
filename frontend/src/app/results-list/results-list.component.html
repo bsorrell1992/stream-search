@@ -1,0 +1,7 @@
+<div>
+    <app-results-list-element
+        *ngFor="let streamingService of resultsListService.getStreamingServices()"
+        [streamingService]="streamingService"
+    >
+    </app-results-list-element>
+</div>
