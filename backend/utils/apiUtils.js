@@ -39,15 +39,13 @@ async function loadCountries() {
             'X-RapidAPI-Key': process.env.API_KEY,
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
-        }).catch((error) => {
-        console.error(error);
-        res.status(500).send(error);
-        });
+        })
 
         countries = countries.data;
-
         cache.set('countries', countries);
     }
+
+    return countries;
 }
 
 async function loadShows(country, title) {
@@ -65,10 +63,7 @@ async function loadShows(country, title) {
             'X-RapidAPI-Key': process.env.API_KEY,
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
-        }).catch((error) => {
-            console.error(error);
-            res.status(500).send(error);
-        });
+        })
 
         shows = shows.data;
         cache.set(`shows/${country}/${title}`, shows, 10 * 60);

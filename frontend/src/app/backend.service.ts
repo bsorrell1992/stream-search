@@ -21,6 +21,6 @@ export class BackendService {
   }
 
   fetchStreamingServices(country: string): Observable<StreamingService[]> {
-    return this.http.get<StreamingService[]>(`${this.Root_URL}/streaming-services/${country}`);
+    return this.http.get<StreamingService[]>(`${this.Root_URL}/countries/streaming-services/${country}`);
   }
 }

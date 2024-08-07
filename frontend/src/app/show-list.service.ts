@@ -10,16 +10,10 @@ export class ShowListService {
 
   constructor(private backendService: BackendService) { }
 
-  async searchForShow(input: {title: string, country: string}): Promise<boolean> {
-    this.backendService.fetchShows(input).then((shows) => {
+  searchForShow(input: {title: string, country: string}): void {
+    this.backendService.fetchShows(input).subscribe((shows) => {
       this.shows = shows;
       this.country = input.country;
-      return true;
-    }).catch((error) => {
-      console.log(error);
-      return false;
     });
-
-    return false;
   }
 }

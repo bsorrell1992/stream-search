@@ -8,16 +8,15 @@ import { StreamingService } from './models/streaming-service.model';
   providedIn: 'root'
 })
 export class DisplayListService {
+  readonly defaultCountry: string = "us";
+
   private streamingServiceChecked: {[streamingServiceId: string]: boolean} = {};
   streamingServiceControls: FormGroup = new FormGroup({});
   streamingServiceDisplay: StreamingService[] = [];
   selectedCountryChange$: Subject<string> = new Subject<string>();
 
   constructor(public countriesService: CountriesService) {
-    countriesService.countriesChange$.subscribe(() => {
-      this.updateStreamingServices("us");
-      countriesService.countriesChange$.unsubscribe();
-    });
+    this.updateStreamingServices(this.defaultCountry);
 
     this.selectedCountryChange$.subscribe((selectedCountryCode: string): void => {
       this.updateStreamingServices(selectedCountryCode);
@@ -35,6 +34,7 @@ export class DisplayListService {
 
   updateStreamingServices(selectedCountryCode: string): void {
     this.updateChecked();
+    
     this.updateControls(selectedCountryCode);
     this.updateDisplay(selectedCountryCode);
   }
@@ -47,18 +47,21 @@ export class DisplayListService {
   }
 
   private updateControls(selectedCountryCode: string): void {
-    const streamingServices: StreamingService[] = this.countriesService.getServices(selectedCountryCode);
-    let streamingServiceControls: {
-      [streamingServiceId: string]: FormControl
-    } = {};
-    for (const streamingService of streamingServices) {
-      const id = streamingService.id;
-      streamingServiceControls[id] = new FormControl(this.streamingServiceChecked[id] == true, {nonNullable: true});
-    }
-    this.streamingServiceControls = new FormGroup(streamingServiceControls);
+    this.countriesService.getServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+      let streamingServiceControls: {
+        [streamingServiceId: string]: FormControl
+      } = {};
+      for (const streamingService of streamingServices) {
+        const id = streamingService.id;
+        streamingServiceControls[id] = new FormControl(this.streamingServiceChecked[id] == true, {nonNullable: true});
+      }
+      this.streamingServiceControls = new FormGroup(streamingServiceControls);
+    });
   }
 
   private updateDisplay(selectedCountryCode: string): void {
-    this.streamingServiceDisplay = this.countriesService.getServices(selectedCountryCode);
+    this.countriesService.getServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+      this.streamingServiceDisplay = streamingServices;
+    });
   }
 }

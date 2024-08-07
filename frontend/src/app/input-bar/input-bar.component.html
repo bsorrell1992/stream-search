@@ -1,7 +1,7 @@
 <form [formGroup]="showForm" (ngSubmit)="onSubmit()">
     <select #countrySelect name="country" id="country" formControlName="country" (change)="onChange(countrySelect.value)">
         <option value=""></option>
-        <option *ngFor="let country of countriesService.getCountries()" [value]="country.countryCode">
+        <option *ngFor="let country of countryNames" [value]="country.countryCode">
             {{ country.name }}
         </option>
     </select>

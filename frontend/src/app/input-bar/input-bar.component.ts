@@ -26,6 +26,7 @@ export class InputBarComponent {
     public displayListService: DisplayListService,
     public showListService: ShowListService) {
       countriesService.getCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
+        console.log(countryNames);
         this.countryNames = countryNames;
       });
     }
@@ -39,6 +40,6 @@ export class InputBarComponent {
       titleVal: string | undefined = formVals.title,
       countryVal: string | undefined = formVals.country;
     
-    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : this.defaultCountry});
+    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : this.displayListService.defaultCountry});
   }
 }
