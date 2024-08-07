@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { BackendService } from './backend.service';
 export class ShowListService {
   shows: any = [];
   country: string = "us";
+  showObservable$: Subject<any> = new Subject<any>();
 
   constructor(private backendService: BackendService) { }
 

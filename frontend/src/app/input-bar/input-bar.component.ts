@@ -26,7 +26,6 @@ export class InputBarComponent {
     public displayListService: DisplayListService,
     public showListService: ShowListService) {
       countriesService.getCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
-        console.log(countryNames);
         this.countryNames = countryNames;
       });
     }

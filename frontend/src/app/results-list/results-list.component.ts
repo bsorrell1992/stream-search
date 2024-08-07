@@ -4,6 +4,7 @@ import { NgFor } from '@angular/common';
 import { ShowListService } from '../show-list.service';
 import { DisplayListService } from '../display-list.service';
 import { ResultsListService } from '../results-list.service';
+import { StreamingService } from '../models/streaming-service.model';
 
 @Component({
   selector: 'app-results-list',
@@ -13,16 +14,14 @@ import { ResultsListService } from '../results-list.service';
   styleUrl: './results-list.component.css'
 })
 export class ResultsListComponent {
-  @Input() show: any;
+  streamingOptions: StreamingService[] = [];
 
   constructor(public showListService: ShowListService,
-      public displayListService: DisplayListService,
-      public resultsListService: ResultsListService) { }
-
-  ngOnInit() {
-    const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
-    this.show.streamingOptions[this.showListService.country] = this.show.streamingOptions[this.showListService.country].filter((streamingService: any) => {
-      return selectedStreamingServices.includes(streamingService.service.id);
-    });
-  }
+    public displayListService: DisplayListService,
+    public resultsListService: ResultsListService) {
+      const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
+      this.streamingOptions = this.resultsListService.getStreamingServices().filter((streamingService: any) => {
+        return selectedStreamingServices.includes(streamingService.service.id);
+      });
+    }
 }
