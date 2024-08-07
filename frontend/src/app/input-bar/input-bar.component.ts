@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { DisplayListService } from '../display-list.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './input-bar.component.css'
 })
 export class InputBarComponent {
+  private readonly defaultCountry = 'us';
+  countryNames: { countryCode: string, name: string }[] = [];
+
   showForm = new FormGroup({
     title: new FormControl('', {nonNullable: true}),
     country: new FormControl('', {nonNullable: true})
@@ -21,7 +24,11 @@ export class InputBarComponent {
 
   constructor(public countriesService: CountriesService,
     public displayListService: DisplayListService,
-    public showListService: ShowListService) { }
+    public showListService: ShowListService) {
+      countriesService.getCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
+        this.countryNames = countryNames;
+      });
+    }
 
   onChange(country: string) {
     this.displayListService.selectedCountryChange$.next(country);
@@ -32,6 +39,6 @@ export class InputBarComponent {
       titleVal: string | undefined = formVals.title,
       countryVal: string | undefined = formVals.country;
     
-    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : 'us'});
+    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : this.defaultCountry});
   }
 }

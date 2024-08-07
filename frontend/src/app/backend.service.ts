@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Countries } from './models/countries.model';
+import { Observable } from 'rxjs';
+import { StreamingService } from './models/streaming-service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,15 @@ export class BackendService {
     this.Root_URL = "http://localhost:8080/api";
   }
 
-  async fetchShows(input: {title: string, country: string}): Promise<any> {
-    this.http.get(`${this.Root_URL}/shows/${input.country}/${input.title}`).subscribe((shows: any): any => {
-      return shows;
-    });
+  fetchShows(input: { title: string, country: string }): Observable<any> {
+    return this.http.get<any>(`${this.Root_URL}/shows/${input.country}/${input.title}`);
   }
 
-  async fetchCountries() : Promise<Countries> {
-    console.log("fetching...");
-    this.http.get<Countries>(`${this.Root_URL}/countries`).subscribe((countries: Countries): Countries => {
-      console.log(countries);
-      return countries;
-    });
+  fetchCountries() : Observable<{ countryCode: string, name: string }[]> {
+    return this.http.get<{ countryCode: string, name: string }[]>(`${this.Root_URL}/countries`);
+  }
 
-    return {};
+  fetchStreamingServices(country: string): Observable<StreamingService[]> {
+    return this.http.get<StreamingService[]>(`${this.Root_URL}/streaming-services/${country}`);
   }
 }
