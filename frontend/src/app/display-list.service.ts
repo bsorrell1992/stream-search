@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'; 
 import { FormControl, FormGroup } from '@angular/forms';
-import { CountriesService } from './countries.service';
 import { Subject } from 'rxjs';
 import { StreamingService } from './models/streaming-service.model';
+import { BackendService } from './backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class DisplayListService {
   streamingServiceDisplay: StreamingService[] = [];
   selectedCountryChange$: Subject<string> = new Subject<string>();
 
-  constructor(public countriesService: CountriesService) {
+  constructor(public backendService: BackendService) {
     this.updateStreamingServices(this.defaultCountry);
 
     this.selectedCountryChange$.subscribe((selectedCountryCode: string): void => {
@@ -47,7 +47,7 @@ export class DisplayListService {
   }
 
   private updateControls(selectedCountryCode: string): void {
-    this.countriesService.getServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
       let streamingServiceControls: {
         [streamingServiceId: string]: FormControl
       } = {};
@@ -60,7 +60,7 @@ export class DisplayListService {
   }
 
   private updateDisplay(selectedCountryCode: string): void {
-    this.countriesService.getServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
       this.streamingServiceDisplay = streamingServices;
     });
   }

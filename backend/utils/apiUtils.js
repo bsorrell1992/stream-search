@@ -66,10 +66,34 @@ async function loadShows(country, title) {
         })
 
         shows = shows.data;
-        cache.set(`shows/${country}/${title}`, shows, 10 * 60);
+        cache.set(`shows/${country}/${title}`, shows);
     }
 
     return shows;
 }
 
-module.exports = { nameComparator, titleComparator, getCodesAndNames, loadCountries, loadShows };
+function consolidateStreamingOptions(streamingOptions) {
+    let serviceIds = [];
+    for (let i = streamingOptions.length - 1; i >= 0; i -= 1) {
+        const id = streamingOptions[i].service.id;
+        if (serviceIds.includes(id)) streamingOptions.splice(i, 1);
+        else serviceIds.push(id);
+    }
+}
+
+function transformStreamingOptions(shows, country) {
+    for (const i in shows) {
+        shows[i].streamingOptions = shows[i].streamingOptions[country] ?? [];
+        consolidateStreamingOptions(shows[i].streamingOptions);
+        shows[i].streamingOptions.sort((a, b) => {
+            const aName = a.service.name,
+                bName = b.service.name;
+            
+            if (aName < bName) return -1;
+            else if (aName === bName) return 0;
+            else return 1;
+        });
+    }
+}
+
+module.exports = { nameComparator, titleComparator, getCodesAndNames, loadCountries, loadShows, transformStreamingOptions };

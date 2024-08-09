@@ -1,44 +1,57 @@
 import { Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { DisplayListService } from '../display-list.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CountriesService } from '../countries.service';
+import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ShowListService } from '../show-list.service';
 import { RouterLink } from '@angular/router';
+import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-input-bar',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor, RouterLink],
+  imports: [ReactiveFormsModule, NgFor, NgIf, RouterLink],
   templateUrl: './input-bar.component.html',
   styleUrl: './input-bar.component.css'
 })
 export class InputBarComponent {
-  private readonly defaultCountry = 'us';
   countryNames: { countryCode: string, name: string }[] = [];
 
   showForm = new FormGroup({
-    title: new FormControl('', {nonNullable: true}),
-    country: new FormControl('', {nonNullable: true})
+    title: new FormControl('', {
+      nonNullable: true,
+      validators: [
+        Validators.required,
+        this.noWhitespaceValidator
+      ]
+    }),
+    country: new FormControl(this.displayListService.defaultCountry, { nonNullable: true })
   });
 
-  constructor(public countriesService: CountriesService,
+  constructor(public backendService: BackendService,
     public displayListService: DisplayListService,
     public showListService: ShowListService) {
-      countriesService.getCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
+      backendService.fetchCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
         this.countryNames = countryNames;
       });
     }
 
-  onChange(country: string) {
+  protected get title() {
+    return this.showForm.controls['title'];
+  }
+
+  protected get country() {
+    return this.showForm.controls['country'];
+  }
+
+  protected onChange(country: string): void {
     this.displayListService.selectedCountryChange$.next(country);
   }
 
-  onSubmit() {
-    const formVals: Partial<{title: string, country: string}> = this.showForm.value,
-      titleVal: string | undefined = formVals.title,
-      countryVal: string | undefined = formVals.country;
-    
-    this.showListService.searchForShow({title: titleVal ? titleVal : '', country: countryVal ? countryVal : this.displayListService.defaultCountry});
+  protected onSubmit(): void {
+    this.showListService.searchForShow({title: this.title.value, country: this.country.value});
+  }
+
+  protected noWhitespaceValidator(control: FormControl): ValidationErrors | null {
+    return (control.value ?? '').trim().length ? null : { 'whitespace': true };
   }
 }

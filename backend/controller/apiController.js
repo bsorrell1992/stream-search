@@ -3,7 +3,8 @@ const {
     titleComparator,
     getCodesAndNames,
     loadCountries,
-    loadShows
+    loadShows,
+    transformStreamingOptions
 } = require('../utils/apiUtils');
 
 exports.getCountries = async (req, res) => {
@@ -23,7 +24,11 @@ exports.getStreamingServices = async (req, res) => {
 };
 
 exports.getShows = async (req, res) => {
-    const shows = await loadShows(req.params.country, req.params.title);
+    const country = req.params.country,
+        title = req.params.title,
+        shows = await loadShows(country, title);
+
+    transformStreamingOptions(shows, country);
     shows.sort(titleComparator);
     res.status(200).send(shows);
 };

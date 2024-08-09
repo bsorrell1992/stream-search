@@ -15,6 +15,6 @@ export class ResultsListService {
   }
 
   getStreamingServices(): StreamingService[] {
-    return this._show.streamingOptions[this.showListService.country];
+    return this._show.streamingOptions;
   }
 }

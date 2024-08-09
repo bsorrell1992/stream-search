@@ -1,10 +1,17 @@
 <form [formGroup]="showForm" (ngSubmit)="onSubmit()">
     <select #countrySelect name="country" id="country" formControlName="country" (change)="onChange(countrySelect.value)">
-        <option value=""></option>
         <option *ngFor="let country of countryNames" [value]="country.countryCode">
             {{ country.name }}
         </option>
     </select>
-    <input type="text" id="show-title" name="show-title" formControlName="title">
-    <input type="submit" value="Search" routerLink="/home/shows">
+    <input type="text" id="show-title" name="show-title" formControlName="title" required>
+    <input type="submit" value="Search" routerLink="/home/shows" [disabled]="!showForm.valid">
+    <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <span *ngIf="title.hasError('required')">
+            Title is required
+        </span>
+        <span *ngIf="title.hasError('whitespace') && !title.hasError('required')">
+            Title must have at least one non-space character
+        </span>
+    </div>
 </form>

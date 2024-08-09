@@ -1,4 +1,5 @@
 <div class="card sle-container">
+    <img [src]="show.imageSet.horizontalPoster.w1440 ?? show.imageSet.verticalPoster.w1440" class="card-img-top">
     <div class="card-body sle-main">
         <h3 class="card-title sle-title">{{show.title}}{{show.year ? ' (' + show.year + ')' : ''}}</h3>
         <div class="sle-description">
