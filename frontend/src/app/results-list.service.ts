@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { StreamingService } from './models/streaming-service.model';
-import { ShowListService } from './show-list.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,13 +7,17 @@ import { ShowListService } from './show-list.service';
 export class ResultsListService {
   private _show: any = {};
 
-  constructor(private showListService: ShowListService) { }
+  constructor() { }
 
-  set show(_show: any) {
+  setShow(_show: any) {
     this._show = _show;
   }
 
-  getStreamingServices(): StreamingService[] {
+  getStreamingOptions(): StreamingService[] {
     return this._show.streamingOptions;
+  }
+
+  getPoster(): string {
+    return this._show.imageSet?.horizontalPoster.w1440 ?? this._show.imageSet?.verticalPoster.w1440 ?? '';
   }
 }

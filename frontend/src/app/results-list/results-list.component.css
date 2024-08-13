@@ -1,0 +1,9 @@
+.rl-container {
+    height: 100%;
+    overflow-y: auto;
+}
+
+app-results-list-element {
+    height: 30%;
+    width: 25%;
+}

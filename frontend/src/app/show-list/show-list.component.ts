@@ -16,6 +16,6 @@ export class ShowListComponent {
     private resultsListService: ResultsListService) { }
 
   setShow(show: any): void {
-    this.resultsListService.show = show;
+    this.resultsListService.setShow(show);
   }
 }

@@ -1,7 +1,15 @@
-<div>
-    <app-results-list-element
-        *ngFor="let streamingService of streamingOptions"
-        [streamingService]="streamingService"
-    >
-    </app-results-list-element>
+<div class="rl-container">
+    <img [src]="poster">
+    <ng-container *ngIf="streamingOptions.length > 0">
+        <app-results-list-element
+            *ngFor="let streamingService of streamingOptions"
+            [streamingService]="streamingService"
+        >
+        </app-results-list-element>
+    </ng-container>
+    <ng-container *ngIf="streamingOptions.length == 0">
+        <p>
+            
+        </p>
+    </ng-container>
 </div>
