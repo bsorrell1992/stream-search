@@ -7,14 +7,18 @@ import { StreamingService } from './models/streaming-service.model';
 export class ResultsListService {
   private _show: any = {};
 
-  constructor() { }
-
   setShow(_show: any) {
     this._show = _show;
   }
 
   hasShow(): boolean {
-    return !this.objectIsEmpty(this._show);
+    for (const prop in this._show) {
+      if (Object.hasOwn(this._show, prop)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   getStreamingOptions(): StreamingService[] {
@@ -23,15 +27,5 @@ export class ResultsListService {
 
   getPoster(): string {
     return this._show.imageSet?.horizontalPoster.w1440 ?? this._show.imageSet?.verticalPoster.w1440 ?? '';
-  }
-
-  private objectIsEmpty(object: {[prop: string]: any}): boolean {
-    for (const prop in object) {
-      if (Object.hasOwn(object, prop)) {
-        return false;
-      }
-    }
-
-    return true;
   }
 }
