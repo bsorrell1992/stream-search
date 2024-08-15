@@ -4,12 +4,13 @@ import { ShowListComponent } from './show-list/show-list.component';
 import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppContainerComponent } from './app-container/app-container.component';
+import { resultsGuard } from './results.guard';
 
 export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
     {path: 'home', component: AppContainerComponent, children: [
         {path: 'shows', component: ShowListComponent},
-        {path: 'results', component: ResultsListComponent},
+        {path: 'results', component: ResultsListComponent, canActivate: [resultsGuard]},
         {path: '', pathMatch: 'full', component: WelcomeViewComponent}
     ]},
     {path: '**', component: PageNotFoundComponent}
