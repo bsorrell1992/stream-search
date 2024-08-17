@@ -16,4 +16,12 @@ export class ShowListService {
       this.country = input.country;
     });
   }
+
+  getShowById(id: string): any {
+    const match = this.shows.filter((show: any): boolean => {
+      return show.id === id;
+    });
+
+    return (match.length > 0) ? match[0] : {};
+  }
 }

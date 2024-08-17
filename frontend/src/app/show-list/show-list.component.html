@@ -3,7 +3,6 @@
         <app-show-list-element
             *ngFor="let show of showListService.shows"
             [show]="show"
-            (onSelect)="setShow($event)"
         >
         </app-show-list-element>
     </ng-container>

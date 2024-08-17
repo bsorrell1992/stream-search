@@ -9,3 +9,10 @@ export interface Country {
 export interface Countries {
     [countryCode: string]: Country
 };
+
+export interface CountryName {
+    countryCode: string,
+    name: string
+};
+
+export type CountryNames = CountryName[];

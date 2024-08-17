@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { StreamingService } from './models/streaming-service.model';
+import { ShowListService } from './show-list.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,10 @@ import { StreamingService } from './models/streaming-service.model';
 export class ResultsListService {
   private _show: any = {};
 
-  setShow(_show: any) {
-    this._show = _show;
+  constructor(private showListService: ShowListService) { }
+
+  setShow(id: string) {
+    this._show = this.showListService.getShowById(id);
   }
 
   hasShow(): boolean {

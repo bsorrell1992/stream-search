@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StreamingService } from './models/streaming-service.model';
+import { CountryNames } from './models/countries.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class BackendService {
     return this.http.get<any>(`${this.Root_URL}/shows/${input.country}/${input.title}`);
   }
 
-  fetchCountries() : Observable<{ countryCode: string, name: string }[]> {
-    return this.http.get<{ countryCode: string, name: string }[]>(`${this.Root_URL}/countries`);
+  fetchCountries() : Observable<CountryNames> {
+    return this.http.get<CountryNames>(`${this.Root_URL}/countries`);
   }
 
   fetchStreamingServices(country: string): Observable<StreamingService[]> {

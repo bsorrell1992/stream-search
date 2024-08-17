@@ -3,6 +3,8 @@ import { ShowListElementComponent } from '../show-list-element/show-list-element
 import { NgFor, NgIf } from '@angular/common';
 import { ShowListService } from '../show-list.service';
 import { ResultsListService } from '../results-list.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-show-list',
@@ -12,10 +14,12 @@ import { ResultsListService } from '../results-list.service';
   styleUrl: './show-list.component.css'
 })
 export class ShowListComponent {
-  constructor(public showListService: ShowListService,
-    private resultsListService: ResultsListService) { }
+  protected params$: Observable<ParamMap>;
 
-  setShow(show: any): void {
-    this.resultsListService.setShow(show);
+  constructor(public showListService: ShowListService, private route: ActivatedRoute) {
+    this.params$ = route.queryParamMap;
+    this.params$.subscribe((params: ParamMap): void => {
+      showListService.searchForShow({ title: params.get('search')!, country: params.get('country')! });
+    });
   }
 }

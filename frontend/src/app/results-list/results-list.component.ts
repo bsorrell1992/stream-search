@@ -5,6 +5,7 @@ import { ShowListService } from '../show-list.service';
 import { DisplayListService } from '../display-list.service';
 import { ResultsListService } from '../results-list.service';
 import { StreamingService } from '../models/streaming-service.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-results-list',
@@ -18,14 +19,21 @@ export class ResultsListComponent {
 
   constructor(public showListService: ShowListService,
     public displayListService: DisplayListService,
-    public resultsListService: ResultsListService) {
-      const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
-      this.streamingOptions = this.resultsListService.getStreamingOptions()?.filter((streamingService: any) => {
-        return selectedStreamingServices.includes(streamingService.service.id);
-      }) ?? [];
+    public resultsListService: ResultsListService,
+    private route: ActivatedRoute) {
+    route.queryParamMap.subscribe((params: ParamMap): void => {
+      resultsListService.setShow(params.get('id')!);
+    });
   }
 
   get poster(): string {
     return this.resultsListService.getPoster();
+  }
+
+  getStreamingOptions() {
+    const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
+    this.streamingOptions = this.resultsListService.getStreamingOptions()?.filter((streamingService: any) => {
+      return selectedStreamingServices.includes(streamingService.service.id);
+    }) ?? [];
   }
 }

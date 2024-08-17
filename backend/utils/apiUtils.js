@@ -11,15 +11,15 @@ function propComparator(a, b, prop) {
     else return 1;
 }
 
-function nameComparator(a, b) {
+exports.nameComparator = (a, b) => {
     return propComparator(a, b, 'name');
 }
 
-function titleComparator(a, b) {
+exports.titleComparator = (a, b) => {
     return propComparator(a, b, 'title');
 }
 
-function getCodesAndNames(countries) {
+exports.getCodesAndNames = (countries) => {
     let countryInfo = [];
     Object.keys(countries).forEach((key) => {
         const { countryCode, name } = countries[key];
@@ -28,7 +28,7 @@ function getCodesAndNames(countries) {
     return countryInfo;
 }
 
-async function loadCountries() {
+exports.loadCountries = async () => {
     let countries = cache.get('countries');
 
     if (countries === undefined) {
@@ -48,7 +48,7 @@ async function loadCountries() {
     return countries;
 }
 
-async function loadShows(country, title) {
+exports.loadShows = async (country, title) => {
     let shows = cache.get(`shows/${country}/${title}`);
     if (shows === undefined) {
         shows = await axios.request({
@@ -81,7 +81,7 @@ function consolidateStreamingOptions(streamingOptions) {
     }
 }
 
-function transformStreamingOptions(shows, country) {
+exports.transformStreamingOptions = (shows, country) => {
     for (const i in shows) {
         shows[i].streamingOptions = shows[i].streamingOptions[country] ?? [];
         consolidateStreamingOptions(shows[i].streamingOptions);
@@ -96,7 +96,7 @@ function transformStreamingOptions(shows, country) {
     }
 }
 
-async function tryCatchSendAsync(res, asyncFn) {
+exports.tryCatchSendAsync = async (res, asyncFn) => {
     try {
         let ret = await asyncFn();
         res.status(200).send(ret);
@@ -105,5 +105,3 @@ async function tryCatchSendAsync(res, asyncFn) {
         res.status(500).send(error.message);
     }
 }
-
-module.exports = { nameComparator, titleComparator, getCodesAndNames, loadCountries, loadShows, transformStreamingOptions, tryCatchSendAsync };

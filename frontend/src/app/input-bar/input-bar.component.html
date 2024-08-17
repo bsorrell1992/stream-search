@@ -1,11 +1,11 @@
-<form [formGroup]="showForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="showForm">
     <select #countrySelect name="country" id="country" formControlName="country" (change)="onChange(countrySelect.value)">
         <option *ngFor="let country of countryNames" [value]="country.countryCode">
             {{ country.name }}
         </option>
     </select>
     <input type="text" id="show-title" name="show-title" formControlName="title" required>
-    <input type="submit" value="Search" routerLink="/home/shows" [disabled]="!showForm.valid">
+    <input type="submit" value="Search" routerLink="/home/shows" [queryParams]="{ country: country.value, search: title.value }" [disabled]="!showForm.valid">
     <div *ngIf="title.invalid && (title.dirty || title.touched)">
         <span *ngIf="title.hasError('required')">
             Title is required

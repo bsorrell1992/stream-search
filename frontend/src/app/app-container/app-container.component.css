@@ -13,14 +13,13 @@
 .ss-left {
     display: flex;
     flex-direction: column;
-    width: 25%;
-    max-width: 450px;
+    width: 15%;
 }
 
 .ss-right {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 85%;
 }
 
 .ss-stream-list {
