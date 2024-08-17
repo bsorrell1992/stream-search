@@ -7,12 +7,13 @@ import { AppContainerComponent } from './app-container/app-container.component';
 import { resultsGuard } from './results.guard';
 import { BadRequestComponent } from './bad-request/bad-request.component';
 import { countryGuard } from './country.guard';
+import { searchGuard } from './search.guard';
 
 export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
     {path: 'home', component: AppContainerComponent, children: [
         {path: 'shows', component: ShowListComponent, canActivate: [countryGuard]},
-        {path: 'results', component: ResultsListComponent, canActivate: [countryGuard, resultsGuard]},
+        {path: 'results', component: ResultsListComponent, canActivate: [countryGuard, searchGuard, resultsGuard]},
         {path: '', pathMatch: 'full', component: WelcomeViewComponent, canActivate: [countryGuard]}
     ]},
     {path: 'bad-request', component: BadRequestComponent},
