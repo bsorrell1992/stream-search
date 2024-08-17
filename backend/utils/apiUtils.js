@@ -1,6 +1,7 @@
 const axios = require('axios');
 const NodeCache = require('node-cache');
 const cache = new NodeCache();
+const SHOWS_TIMEOUT = 60 * 60 * 24;
 
 function propComparator(a, b, prop) {
     const aProp = a[prop],
@@ -32,14 +33,18 @@ exports.loadCountries = async () => {
     let countries = cache.get('countries');
 
     if (countries === undefined) {
-        countries = await axios.request({
-        method: 'GET',
-        url: 'https://streaming-availability.p.rapidapi.com/countries',
-        headers: {
-            'X-RapidAPI-Key': process.env.API_KEY,
-            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+        try {
+            countries = await axios.request({
+            method: 'GET',
+            url: 'https://streaming-availability.p.rapidapi.com/countries',
+            headers: {
+                'X-RapidAPI-Key': process.env.API_KEY,
+                'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+            }
+            });
+        } catch (error) {
+            throw error;
         }
-        });
 
         countries = countries.data;
         cache.set('countries', countries);
@@ -51,22 +56,26 @@ exports.loadCountries = async () => {
 exports.loadShows = async (country, title) => {
     let shows = cache.get(`shows/${country}/${title}`);
     if (shows === undefined) {
-        shows = await axios.request({
-            method: 'GET',
-            url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
-            params: {
-                title: title,
-                country: country,
-                series_granularity: 'show',
-            },
-            headers: {
-                'X-RapidAPI-Key': process.env.API_KEY,
-                'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-            }
-        });
+        try {
+            shows = await axios.request({
+                method: 'GET',
+                url: 'https://streaming-availability.p.rapidapi.com/shows/search/title',
+                params: {
+                    title: title,
+                    country: country,
+                    series_granularity: 'show',
+                },
+                headers: {
+                    'X-RapidAPI-Key': process.env.API_KEY,
+                    'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+                }
+            });
+        } catch (error) {
+            throw error;
+        }
 
         shows = shows.data;
-        cache.set(`shows/${country}/${title}`, shows);
+        cache.set(`shows/${country}/${title}`, shows, SHOWS_TIMEOUT);
     }
 
     return shows;
@@ -96,12 +105,11 @@ exports.transformStreamingOptions = (shows, country) => {
     }
 }
 
-exports.tryCatchSendAsync = async (res, asyncFn) => {
-    try {
-        let ret = await asyncFn();
-        res.status(200).send(ret);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send(error.message);
-    }
+exports.validateCountry = async (country) => {
+    let countries = await this.loadCountries();
+    return Object.keys(countries).includes(country);
+}
+
+exports.validateTitle = (title) => {
+    return title.trim().length > 0;
 }

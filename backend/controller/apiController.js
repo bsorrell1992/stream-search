@@ -5,37 +5,49 @@ const {
     loadCountries,
     loadShows,
     transformStreamingOptions,
-    tryCatchSendAsync
+    validateCountry,
+    validateTitle
 } = require('../utils/apiUtils');
 
 exports.getCountries = async (req, res) => {
-    await tryCatchSendAsync(res, async () => {
+    try {
         const countries = await loadCountries();
         let serviceNames = getCodesAndNames(countries);
         serviceNames.sort(nameComparator);
-        return serviceNames;
-    });
+        res.status(200).send(serviceNames);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
 };
 
 exports.getStreamingServices = async (req, res) => {
     const targetCountry = req.params.country;
+    if (!(await validateCountry(targetCountry))) return res.status(400).send("Country code not found");
 
-    await tryCatchSendAsync(res, async () => {
-        let countries = await loadCountries(),
-            streamingServices = countries[targetCountry].services;
+    try {
+        const countries = await loadCountries();        
+        streamingServices = countries[targetCountry].services;
         streamingServices.sort(nameComparator);
-        return streamingServices;
-    });
+        res.status(200).send(streamingServices);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
 };
 
 exports.getShows = async (req, res) => {
     const country = req.params.country,
         title = req.params.title;
+    if (!(await validateCountry(country)) || !validateTitle(title)) return res.status(400).send("Invalid input");
 
-    await tryCatchSendAsync(res, async () => {
+    try {
         let shows = await loadShows(country, title);
         transformStreamingOptions(shows, country);
         shows.sort(titleComparator);
-        return shows;
-    });
+        res.status(200).send(shows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
 };
