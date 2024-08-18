@@ -1,21 +1,15 @@
 import { Routes } from '@angular/router';
-import { ResultsListComponent } from './results-list/results-list.component';
-import { ShowListComponent } from './show-list/show-list.component';
-import { WelcomeViewComponent } from './welcome-view/welcome-view.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AppContainerComponent } from './app-container/app-container.component';
 import { resultsGuard } from './results.guard';
-import { BadRequestComponent } from './bad-request/bad-request.component';
 import { countryGuard } from './country.guard';
 import { searchGuard } from './search.guard';
 
 export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'home'},
-    {path: 'home', component: AppContainerComponent, children: [
-        {path: 'shows', component: ShowListComponent, canActivate: [countryGuard]},
-        {path: 'results', component: ResultsListComponent, canActivate: [countryGuard, searchGuard, resultsGuard]},
-        {path: '', pathMatch: 'full', component: WelcomeViewComponent, canActivate: [countryGuard]}
+    {path: 'home', loadComponent: () => import('./app-container/app-container.component').then(c => c.AppContainerComponent), children: [
+        {path: 'shows', loadComponent: () => import('./show-list/show-list.component').then(c => c.ShowListComponent), canActivate: [countryGuard]},
+        {path: 'results', loadComponent: () => import('./results-list/results-list.component').then(c => c.ResultsListComponent), canActivate: [countryGuard, searchGuard, resultsGuard]},
+        {path: '', pathMatch: 'full', loadComponent: () => import('./welcome-view/welcome-view.component').then(c => c.WelcomeViewComponent), canActivate: [countryGuard]}
     ]},
-    {path: 'bad-request', component: BadRequestComponent},
-    {path: '**', component: PageNotFoundComponent}
+    {path: 'bad-request', loadComponent: () => import('./bad-request/bad-request.component').then(c => c.BadRequestComponent)},
+    {path: '**', loadComponent: () => import('./page-not-found/page-not-found.component').then(c => c.PageNotFoundComponent)}
 ];
