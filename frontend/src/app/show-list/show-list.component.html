@@ -1,14 +1,21 @@
 <div class="show-list-container">
-    <ng-container *ngIf="showListService.shows.length > 0">
-        <app-show-list-element
-            *ngFor="let show of showListService.shows"
-            [show]="show"
-        >
-        </app-show-list-element>
+    <ng-container *ngIf="showListService.shows !== null">
+        <ng-container *ngIf="showListService.shows.length > 0">
+            <app-show-list-element
+                *ngFor="let show of showListService.shows"
+                [show]="show"
+            >
+            </app-show-list-element>
+        </ng-container>
+        <ng-container *ngIf="showListService.shows.length == 0">
+            <p>
+                No shows found. Try searching for a different title.
+            </p>
+        </ng-container>
     </ng-container>
-    <ng-container *ngIf="showListService.shows.length == 0">
+    <ng-container *ngIf="showListService.shows === null">
         <p>
-            No shows found. Try searching for a different title.
+            An error occurred while retrieving shows
         </p>
     </ng-container>
 </div>

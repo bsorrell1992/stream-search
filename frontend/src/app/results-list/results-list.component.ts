@@ -15,14 +15,12 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrl: './results-list.component.css'
 })
 export class ResultsListComponent {
-  protected streamingOptions: StreamingService[] = [];
-
   constructor(public showListService: ShowListService,
     public displayListService: DisplayListService,
     public resultsListService: ResultsListService,
     private route: ActivatedRoute) {
     route.queryParamMap.subscribe((params: ParamMap): void => {
-      resultsListService.setShow(params.get('id')!);
+      resultsListService.setShow(params.get('id'));
     });
   }
 
@@ -30,10 +28,7 @@ export class ResultsListComponent {
     return this.resultsListService.getPoster();
   }
 
-  getStreamingOptions() {
-    const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
-    this.streamingOptions = this.resultsListService.getStreamingOptions()?.filter((streamingService: any) => {
-      return selectedStreamingServices.includes(streamingService.service.id);
-    }) ?? [];
+  get streamingOptions(): StreamingService[] | null {
+    return this.resultsListService.getStreamingOptions();
   }
 }

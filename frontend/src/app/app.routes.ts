@@ -8,7 +8,7 @@ export const routes: Routes = [
     {path: 'home', loadComponent: () => import('./app-container/app-container.component').then(c => c.AppContainerComponent), children: [
         {path: 'shows', loadComponent: () => import('./show-list/show-list.component').then(c => c.ShowListComponent), canActivate: [countryGuard]},
         {path: 'results', loadComponent: () => import('./results-list/results-list.component').then(c => c.ResultsListComponent), canActivate: [countryGuard, searchGuard, resultsGuard]},
-        {path: '', pathMatch: 'full', loadComponent: () => import('./welcome-view/welcome-view.component').then(c => c.WelcomeViewComponent), canActivate: [countryGuard]}
+        {path: '', pathMatch: 'full', loadComponent: () => import('./welcome-view/welcome-view.component').then(c => c.WelcomeViewComponent)}
     ]},
     {path: 'bad-request', loadComponent: () => import('./bad-request/bad-request.component').then(c => c.BadRequestComponent)},
     {path: '**', loadComponent: () => import('./page-not-found/page-not-found.component').then(c => c.PageNotFoundComponent)}

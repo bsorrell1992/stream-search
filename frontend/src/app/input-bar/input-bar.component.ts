@@ -4,7 +4,7 @@ import { DisplayListService } from '../display-list.service';
 import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ShowListService } from '../show-list.service';
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
-import { BackendService } from '../backend.service';
+import { CountryNamesService } from '../country-names.service';
 
 @Component({
   selector: 'app-input-bar',
@@ -14,8 +14,6 @@ import { BackendService } from '../backend.service';
   styleUrl: './input-bar.component.css'
 })
 export class InputBarComponent {
-  countryNames: { countryCode: string, name: string }[] = [];
-
   showForm = new FormGroup({
     title: new FormControl('', {
       nonNullable: true,
@@ -27,14 +25,10 @@ export class InputBarComponent {
     country: new FormControl(this.displayListService.defaultCountry, { nonNullable: true })
   });
 
-  constructor(public backendService: BackendService,
-    public displayListService: DisplayListService,
-    public showListService: ShowListService,
+  constructor(protected countryNamesService: CountryNamesService,
+    protected displayListService: DisplayListService,
+    protected showListService: ShowListService,
     private route: ActivatedRoute) {
-      backendService.fetchCountries().subscribe((countryNames: { countryCode: string, name: string }[]): void => {
-        this.countryNames = countryNames;
-      });
-
       route.queryParamMap.subscribe((params: ParamMap): void => {
         const countryParam = params.get('country');
         if (countryParam) {
@@ -49,6 +43,10 @@ export class InputBarComponent {
 
   protected get country() {
     return this.showForm.controls['country'];
+  }
+
+  protected get countryNames() {
+    return this.countryNamesService.countryNames;
   }
 
   protected onChange(country: string): void {

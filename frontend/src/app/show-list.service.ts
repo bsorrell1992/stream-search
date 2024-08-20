@@ -17,7 +17,9 @@ export class ShowListService {
     });
   }
 
-  getShowById(id: string): any {
+  getShowById(id: string | null): any {
+    if (id === null) return null;
+
     const match = this.shows.filter((show: any): boolean => {
       return show.id === id;
     });

@@ -5,12 +5,12 @@ import { map, Observable } from 'rxjs';
 import { CountryName, CountryNames } from './models/countries.model';
 
 export const countryGuard: CanActivateFn = (route, state): Observable<boolean | UrlTree> | UrlTree => {
-  const backendService = inject(BackendService),
-    router = inject(Router);
+  const backendService: BackendService = inject(BackendService),
+    router: Router = inject(Router);
 
   return backendService.fetchCountries().pipe(
     map(
-      (countries: CountryNames): boolean | UrlTree => countries.filter(
+      (countries: CountryNames | null): boolean | UrlTree => countries !== null && countries.filter(
           (country: CountryName): boolean => country.countryCode === route.queryParamMap.get('country')
         ).length > 0 ? true : router.createUrlTree(['bad-request'])
     )

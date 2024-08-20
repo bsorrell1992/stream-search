@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
 import { StreamingService } from './models/streaming-service.model';
 import { ShowListService } from './show-list.service';
+import { DisplayListService } from './display-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResultsListService {
-  private _show: any = {};
+  private _show: any = null;
 
-  constructor(private showListService: ShowListService) { }
+  constructor(private showListService: ShowListService,
+    private displayListService: DisplayListService
+  ) { }
 
-  setShow(id: string) {
+  setShow(id: string | null) {
     this._show = this.showListService.getShowById(id);
   }
 
   hasShow(): boolean {
-    for (const prop in this._show) {
-      if (Object.hasOwn(this._show, prop)) {
-        return true;
-      }
-    }
-
-    return false;
+    return this._show === null;
   }
 
-  getStreamingOptions(): StreamingService[] {
-    return this._show.streamingOptions;
+  getStreamingOptions(): StreamingService[] | null {
+    const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
+    return this._show?.streamingOptions.filter((streamingService: any) => {
+      return selectedStreamingServices.includes(streamingService.service.id);
+    }) ?? null;
   }
 
   getPoster(): string {

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ShowListElementComponent } from '../show-list-element/show-list-element.component';
 import { NgFor, NgIf } from '@angular/common';
 import { ShowListService } from '../show-list.service';
-import { ResultsListService } from '../results-list.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 

@@ -6,12 +6,15 @@
     </select>
     <input type="text" id="show-title" name="show-title" formControlName="title" required>
     <input type="submit" value="Search" routerLink="/home/shows" [queryParams]="{ country: country.value, search: title.value }" [disabled]="!showForm.valid">
-    <div *ngIf="title.invalid && (title.dirty || title.touched)">
+    <div *ngIf="countryNames === null || (title.invalid && (title.dirty || title.touched))">
         <span *ngIf="title.hasError('required')">
             Title is required
         </span>
         <span *ngIf="title.hasError('whitespace') && !title.hasError('required')">
             Title must have at least one non-space character
+        </span>
+        <span *ngIf="countryNames === null">
+            An error occurred while retrieving country data
         </span>
     </div>
 </form>

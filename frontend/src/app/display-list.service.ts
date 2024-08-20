@@ -12,7 +12,7 @@ export class DisplayListService {
 
   private streamingServiceChecked: {[streamingServiceId: string]: boolean} = {};
   streamingServiceControls: FormGroup = new FormGroup({});
-  streamingServiceDisplay: StreamingService[] = [];
+  streamingServiceDisplay: StreamingService[] | null = [];
   selectedCountryChange$: Subject<string> = new Subject<string>();
 
   constructor(public backendService: BackendService) {
@@ -47,20 +47,24 @@ export class DisplayListService {
   }
 
   private updateControls(selectedCountryCode: string): void {
-    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
       let streamingServiceControls: {
         [streamingServiceId: string]: FormControl
       } = {};
-      for (const streamingService of streamingServices) {
-        const id = streamingService.id;
-        streamingServiceControls[id] = new FormControl(this.streamingServiceChecked[id] == true, {nonNullable: true});
+
+      if (streamingServices !== null) {
+        for (const streamingService of streamingServices) {
+          const id = streamingService.id;
+          streamingServiceControls[id] = new FormControl(this.streamingServiceChecked[id] == true, {nonNullable: true});
+        }
       }
+      
       this.streamingServiceControls = new FormGroup(streamingServiceControls);
     });
   }
 
   private updateDisplay(selectedCountryCode: string): void {
-    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[]): void => {
+    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
       this.streamingServiceDisplay = streamingServices;
     });
   }
