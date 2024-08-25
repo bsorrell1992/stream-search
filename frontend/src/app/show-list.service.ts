@@ -12,18 +12,17 @@ export class ShowListService {
 
   searchForShow(input: {title: string, country: string}): void {
     this.backendService.fetchShows(input).subscribe((shows) => {
+      console.log(shows);
       this.shows = shows;
       this.country = input.country;
     });
   }
 
   getShowById(id: string | null): any {
-    if (id === null) return null;
-
     const match = this.shows.filter((show: any): boolean => {
       return show.id === id;
     });
 
-    return (match.length > 0) ? match[0] : {};
+    return (match.length > 0) ? match[0] : null;
   }
 }

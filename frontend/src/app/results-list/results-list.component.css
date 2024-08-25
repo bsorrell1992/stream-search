@@ -1,9 +1,16 @@
+:host {
+    display: block;
+    height: 85%;
+    overflow-y: auto;
+}
+
 .rl-container {
     height: 100%;
     overflow-y: auto;
 }
 
 app-results-list-element {
+    display: inline-block;
     height: 30%;
     width: 25%;
 }

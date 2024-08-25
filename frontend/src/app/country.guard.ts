@@ -10,9 +10,11 @@ export const countryGuard: CanActivateFn = (route, state): Observable<boolean | 
 
   return backendService.fetchCountries().pipe(
     map(
-      (countries: CountryNames | null): boolean | UrlTree => countries !== null && countries.filter(
+      (countries: CountryNames | null): boolean | UrlTree => {
+        return countries !== null && countries.filter(
           (country: CountryName): boolean => country.countryCode === route.queryParamMap.get('country')
-        ).length > 0 ? true : router.createUrlTree(['bad-request'])
+        ).length > 0 ? true : (console.log("bad country"), router.createUrlTree(['bad-request']));
+      }
     )
   );
 };

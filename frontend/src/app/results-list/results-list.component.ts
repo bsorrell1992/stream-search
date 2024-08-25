@@ -31,4 +31,8 @@ export class ResultsListComponent {
   get streamingOptions(): StreamingService[] | null {
     return this.resultsListService.getStreamingOptions();
   }
+
+  get title(): string {
+    return this.resultsListService.getTitle();
+  }
 }

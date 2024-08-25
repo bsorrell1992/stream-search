@@ -1,6 +1,6 @@
 const {
     nameComparator,
-    titleComparator,
+    showComparator,
     getCodesAndNames,
     loadCountries,
     loadShows,
@@ -44,7 +44,7 @@ exports.getShows = async (req, res) => {
     try {
         let shows = await loadShows(country, title);
         transformStreamingOptions(shows, country);
-        shows.sort(titleComparator);
+        shows.sort(showComparator);
         res.status(200).send(shows);
     } catch (error) {
         console.error(error);

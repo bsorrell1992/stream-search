@@ -1,22 +1,22 @@
-<div class="rl-container">
-    <img [src]="poster">
-    <ng-container *ngIf="streamingOptions !== null">
-        <ng-container *ngIf="streamingOptions.length > 0">
-            <app-results-list-element
-                *ngFor="let streamingService of streamingOptions"
-                [streamingService]="streamingService"
-            >
-            </app-results-list-element>
-        </ng-container>
-        <ng-container *ngIf="streamingOptions.length == 0">
-            <p>
-                No streaming options found
-            </p>
-        </ng-container>
-    </ng-container>
-    <ng-container *ngIf="streamingOptions === null">
+<img [src]="poster">
+<ng-container *ngIf="streamingOptions !== null">
+    <ng-container *ngIf="streamingOptions.length > 0">
         <p>
-            An error occurred while retrieving streaming info
+            {{ title }} can be found on {{ streamingOptions.length === 1 ? 'this streaming service' : 'these streaming services'}}:
+        </p>
+        <app-results-list-element
+            *ngFor="let streamingService of streamingOptions"
+            [streamingService]="streamingService"
+        ></app-results-list-element>
+    </ng-container>
+    <ng-container *ngIf="streamingOptions.length == 0">
+        <p>
+            No streaming options found
         </p>
     </ng-container>
-</div>
+</ng-container>
+<ng-container *ngIf="streamingOptions === null">
+    <p>
+        An error occurred while retrieving streaming info
+    </p>
+</ng-container>

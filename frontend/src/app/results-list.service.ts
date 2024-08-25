@@ -13,12 +13,16 @@ export class ResultsListService {
     private displayListService: DisplayListService
   ) { }
 
-  setShow(id: string | null) {
+  setShow(id: string | null): void {
     this._show = this.showListService.getShowById(id);
   }
 
   hasShow(): boolean {
-    return this._show === null;
+    return this._show !== null;
+  }
+
+  getTitle(): string {
+    return this._show.title;
   }
 
   getStreamingOptions(): StreamingService[] | null {
