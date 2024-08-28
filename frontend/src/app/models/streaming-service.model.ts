@@ -1,11 +1,15 @@
+interface ImageSet {
+    lightThemeImage: string,
+    darkThemeImage: string,
+    whiteImage: string
+};
+
 export interface StreamingService {
     id: string,
     name: string,
     homePage: string,
     themeColorCode: string,
-    images: {
-        lightThemeImage: string,
-        darkThemeImage: string,
-        whiteImage: string
-    }
+    imageSet: ImageSet
 };
+
+export type StreamingServices = StreamingService[];

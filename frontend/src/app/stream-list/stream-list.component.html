@@ -1,15 +1,13 @@
-<div>
-    <ng-container *ngIf="displayListService.streamingServiceDisplay !== null">
-        <form [formGroup]="displayListService.streamingServiceControls">
-            <div *ngFor="let streamingService of displayListService.streamingServiceDisplay">
-                <label [for]="streamingService.id">{{ streamingService.name }}</label>
-                <input type="checkbox" [id]="streamingService.id" [name]="streamingService.name" formControlName="{{ streamingService.id }}">
-            </div>
-        </form>
-    </ng-container>
-    <ng-container *ngIf="displayListService.streamingServiceDisplay === null">
-        <p>
-            An error occurred while retrieving streaming options
-        </p>
-    </ng-container>
-</div>
+<ng-container *ngIf="displayListService.streamingServiceDisplay !== null">
+    <form [formGroup]="displayListService.streamingServiceControls">
+        <div *ngFor="let streamingService of displayListService.streamingServiceDisplay">
+            <label [for]="streamingService.id"><img [src]="streamingService.imageSet.lightThemeImage"></label>
+            <input type="checkbox" [id]="streamingService.id" [name]="streamingService.name" formControlName="{{ streamingService.id }}" class="visually-hidden">
+        </div>
+    </form>
+</ng-container>
+<ng-container *ngIf="displayListService.streamingServiceDisplay === null">
+    <p>
+        An error occurred while retrieving streaming options
+    </p>
+</ng-container>

@@ -1,3 +1,10 @@
+<ng-container *ngIf="showSpinner">
+    <div class="overlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading streaming options...</span>
+        </div>
+    </div>
+</ng-container>
 <app-stream-list></app-stream-list>
 <router-outlet></router-outlet>
 <app-input-bar></app-input-bar>

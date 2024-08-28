@@ -8,10 +8,9 @@
                 *ngFor="let show of showListService.shows"
                 [show]="show"
                 (onClick)="updateView($event)"
-            >
-            </app-show-list-element>
+            ></app-show-list-element>
         </ng-container>
-        <ng-container *ngIf="showListService.shows.length == 0">
+        <ng-container *ngIf="showListService.shows.length === 0">
             <p>
                 No shows found. Try searching with a different title.
             </p>

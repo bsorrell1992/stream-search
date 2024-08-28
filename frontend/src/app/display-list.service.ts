@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { StreamingService } from './models/streaming-service.model';
 import { BackendService } from './backend.service';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class DisplayListService {
   streamingServiceDisplay: StreamingService[] | null = [];
   selectedCountryChange$: Subject<string> = new Subject<string>();
 
-  constructor(public backendService: BackendService) {
+  constructor(private backendService: BackendService,
+    private spinnerService: SpinnerService
+  ) {
     this.updateStreamingServices(this.defaultCountry);
 
     this.selectedCountryChange$.subscribe((selectedCountryCode: string): void => {
@@ -47,6 +50,8 @@ export class DisplayListService {
   }
 
   private updateControls(selectedCountryCode: string): void {
+    this.spinnerService.showStreamSpinner = true;
+
     this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
       let streamingServiceControls: {
         [streamingServiceId: string]: FormControl
@@ -60,12 +65,15 @@ export class DisplayListService {
       }
       
       this.streamingServiceControls = new FormGroup(streamingServiceControls);
+      
+      this.spinnerService.showStreamSpinner = false;
     });
   }
 
   private updateDisplay(selectedCountryCode: string): void {
     this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
       this.streamingServiceDisplay = streamingServices;
+      if (streamingServices !== null) console.dir(streamingServices[0]);
     });
   }
 }
