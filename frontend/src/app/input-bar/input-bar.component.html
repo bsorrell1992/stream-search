@@ -18,3 +18,13 @@
         </span>
     </div>
 </form>
+<form [formGroup]="showTypeService.showTypeForm">
+    <div>
+        <label for="series">Series</label>
+        <input type="checkbox" id="series" name="series" formControlName="series">
+    </div>
+    <div>
+        <label for="movie">Movie</label>
+        <input type="checkbox" id="movie" name="movie" formControlName="movie">
+    </div>
+</form>

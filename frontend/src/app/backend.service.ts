@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { StreamingService } from './models/streaming-service.model';
 import { CountryNames } from './models/countries.model';
+import { Shows } from './models/shows.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class BackendService {
     this.Root_URL = "http://localhost:8080/api";
   }
 
-  fetchShows(input: { title: string, country: string }): Observable<any> {
-    return this.http.get<any>(`${this.Root_URL}/shows/${input.country}/${input.title}`).pipe(
+  fetchShows(input: { title: string, country: string }): Observable<Shows | null> {
+    return this.http.get<Shows>(`${this.Root_URL}/shows/${input.country}/${input.title}`).pipe(
       catchError(this.handleError)
     );
   }

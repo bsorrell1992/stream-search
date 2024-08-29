@@ -4,6 +4,8 @@ import { NgFor, NgIf } from '@angular/common';
 import { ShowListService } from '../show-list.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ResultsListService } from '../results-list.service';
+import { Show, Shows } from '../models/shows.model';
+import { ShowTypeService } from '../show-type.service';
 
 @Component({
   selector: 'app-show-list',
@@ -15,6 +17,7 @@ import { ResultsListService } from '../results-list.service';
 export class ShowListComponent {
   constructor(public showListService: ShowListService,
     private resultsListService: ResultsListService,
+    private showTypeService: ShowTypeService,
     private router: Router,
     private route: ActivatedRoute) {
     route.queryParamMap.subscribe((params: ParamMap): void => {
@@ -22,11 +25,15 @@ export class ShowListComponent {
     });
   }
 
-  updateView(showId: string): void {
+  protected updateView(showId: string): void {
     this.resultsListService.setShow(showId);
     this.router.navigate(['home', 'results'], { queryParams: {
       country: this.route.snapshot.queryParamMap.get('country'),
       id: showId
     }});
+  }
+
+  protected get showList(): Shows | null {
+    return this.showListService.shows?.filter((show: Show): boolean => this.showTypeService.isSelected(show.showType)) ?? null;
   }
 }

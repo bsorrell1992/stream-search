@@ -4,7 +4,7 @@
 }
 
 img {
-    height: 50%;
+    height: 40%;
 }
 
 .sle-main {
@@ -12,6 +12,7 @@ img {
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+    overflow-y: auto;
 }
 
 .sle-title {
@@ -19,20 +20,5 @@ img {
 }
 
 .sle-description {
-    overflow-y: auto;
-    height: 60%;
-}
-
-.sle-button {
-    height: 15%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-button {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    height: 30%;
 }

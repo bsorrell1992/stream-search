@@ -14,3 +14,8 @@ app-results-list-element {
     height: 30%;
     width: 25%;
 }
+
+img {
+    width: 100%;
+    height: 50%;
+}

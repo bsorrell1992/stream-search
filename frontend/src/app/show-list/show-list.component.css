@@ -8,7 +8,8 @@ app-show-list-element {
     display: inline-block;
     width: 25%;
     max-width: 350px;
-    height: 30%;
+    height: 40%;
+    margin-bottom: 10px;
 }
 
 app-show-list-element:nth-child(3n + 1), app-show-list-element:nth-child(3n + 2) {

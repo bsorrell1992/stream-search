@@ -1,13 +1,27 @@
 <div class="card sle-container">
-    <img [src]="show.imageSet.horizontalPoster.w1440 ?? show.imageSet.verticalPoster.w1440" class="card-img-top">
+    <img [src]="poster" class="card-img-top">
     <div class="card-body sle-main">
-        <h3 class="card-title sle-title">{{ show.title }}{{ show.releaseYear ? ' (' + show.releaseYear + ')' : '' }}{{ show.firstAirYear ? ' (' + show.firstAirYear + (show.lastAirYear !== show.firstAirYear ? '-' + (show.lastAirYear ?? '') : '') + ')' : ''}}</h3>
+        <h3 class="card-title sle-title">{{ title + date }}</h3>
         <h4 class="card-subtitle text-body-secondary">{{ showType }}</h4>
-        <div class="sle-description">
-            <p class="card-text">{{ show.overview }}</p>
-        </div>
-        <div class="sle-button">
-            <button (click)="onClick.emit(show.id)">Click Me!</button>
-        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <h5 class="card-text">{{ creatorsOrDirectors }}</h5>
+                    <p class="card-text">{{ creatorsOrDirectorsList }}</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div>
+                    <h5 class="card-text">Cast</h5>
+                    <p class="card-text">{{ cast }}</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="sle-description">
+                    <h5 class="card-text">Description</h5>
+                    <p class="card-text">{{ overview }}</p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>

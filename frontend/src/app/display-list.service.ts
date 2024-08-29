@@ -73,7 +73,6 @@ export class DisplayListService {
   private updateDisplay(selectedCountryCode: string): void {
     this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
       this.streamingServiceDisplay = streamingServices;
-      if (streamingServices !== null) console.dir(streamingServices[0]);
     });
   }
 }
