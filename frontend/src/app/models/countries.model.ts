@@ -1,9 +1,9 @@
-import { StreamingServices } from "./streaming-service.model"
+import { StreamingOptionData } from "./streaming-service.model"
 
 export interface Country {
     countryCode: string,
     name: string,
-    services: StreamingServices
+    services: StreamingOptionData[]
 };
 
 export interface Countries {

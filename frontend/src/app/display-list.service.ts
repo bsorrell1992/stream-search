@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { StreamingService } from './models/streaming-service.model';
+import { StreamingOptionData } from './models/streaming-service.model';
 import { BackendService } from './backend.service';
 import { SpinnerService } from './spinner.service';
 
@@ -13,7 +13,7 @@ export class DisplayListService {
 
   private streamingServiceChecked: {[streamingServiceId: string]: boolean} = {};
   streamingServiceControls: FormGroup = new FormGroup({});
-  streamingServiceDisplay: StreamingService[] | null = [];
+  streamingServiceDisplay: StreamingOptionData[] | null = [];
   selectedCountryChange$: Subject<string> = new Subject<string>();
 
   constructor(private backendService: BackendService,
@@ -52,7 +52,7 @@ export class DisplayListService {
   private updateControls(selectedCountryCode: string): void {
     this.spinnerService.showStreamSpinner = true;
 
-    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
+    this.backendService.fetchStreamingOptions(selectedCountryCode).subscribe((streamingServices: StreamingOptionData[] | null): void => {
       let streamingServiceControls: {
         [streamingServiceId: string]: FormControl
       } = {};
@@ -71,7 +71,7 @@ export class DisplayListService {
   }
 
   private updateDisplay(selectedCountryCode: string): void {
-    this.backendService.fetchStreamingServices(selectedCountryCode).subscribe((streamingServices: StreamingService[] | null): void => {
+    this.backendService.fetchStreamingOptions(selectedCountryCode).subscribe((streamingServices: StreamingOptionData[] | null): void => {
       this.streamingServiceDisplay = streamingServices;
     });
   }

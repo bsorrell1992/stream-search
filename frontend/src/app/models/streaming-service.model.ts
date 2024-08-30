@@ -1,15 +1,22 @@
 interface ImageSet {
-    lightThemeImage: string,
     darkThemeImage: string,
+    lightThemeImage: string,
     whiteImage: string
 };
 
-export interface StreamingService {
-    id: string,
-    name: string,
+export interface StreamingOptionData {
     homePage: string,
-    themeColorCode: string,
-    imageSet: ImageSet
+    id: string,
+    imageSet: ImageSet,
+    name: string,
+    themeColorCode: string
 };
 
-export type StreamingServices = StreamingService[];
+export interface StreamingOption {
+    addons?: StreamingOptionData[],
+    link: string,
+    service: StreamingOptionData,
+    types: string[]
+}
+
+export type StreamingOptions = StreamingOption[];

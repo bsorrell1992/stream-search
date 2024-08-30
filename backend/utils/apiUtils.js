@@ -92,8 +92,6 @@ exports.loadShows = async (country, title) => {
 
 exports.transformStreamingOptions = (shows, country) => {
     for (const i in shows) {
-        console.log("original show data");
-        console.dir(shows[i].streamingOptions[country] ?? []);
         shows[i].streamingOptions = consolidateStreamingOptions(shows[i].streamingOptions[country] ?? []);
         shows[i].streamingOptions.sort((a, b) => {
             const aName = a.service.name,

@@ -4,7 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { ShowListService } from '../show-list.service';
 import { DisplayListService } from '../display-list.service';
 import { ResultsListService } from '../results-list.service';
-import { StreamingService } from '../models/streaming-service.model';
+import { StreamingOptions } from '../models/streaming-service.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -28,7 +28,7 @@ export class ResultsListComponent {
     return this.resultsListService.getPoster();
   }
 
-  get streamingOptions(): StreamingService[] | null {
+  get streamingOptions(): StreamingOptions | null {
     return this.resultsListService.getStreamingOptions();
   }
 

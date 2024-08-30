@@ -1,4 +1,4 @@
-import { StreamingServices } from "./streaming-service.model";
+import { StreamingOptions } from "./streaming-service.model";
 
 interface ImageSet {
     horizontalPoster: {
@@ -23,7 +23,7 @@ interface BasicShow {
     imageSet: ImageSet,
     overview: string,
     showType: 'series' | 'movie',
-    streamingOptions: StreamingServices,
+    streamingOptions: StreamingOptions,
     title: string
 }
 

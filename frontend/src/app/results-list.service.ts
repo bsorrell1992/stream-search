@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StreamingService } from './models/streaming-service.model';
+import { StreamingOption, StreamingOptions } from './models/streaming-service.model';
 import { ShowListService } from './show-list.service';
 import { DisplayListService } from './display-list.service';
 import { Show } from './models/shows.model';
@@ -27,10 +27,10 @@ export class ResultsListService {
     return this._show?.title ?? '';
   }
 
-  getStreamingOptions(): StreamingService[] | null {
+  getStreamingOptions(): StreamingOptions | null {
     const selectedStreamingServices = this.displayListService.getSelectedStreamingServices();
-    return this._show?.streamingOptions.filter((streamingService: any) => {
-      return selectedStreamingServices.includes(streamingService.service.id);
+    return this._show?.streamingOptions.filter((streamingOption: StreamingOption) => {
+      return selectedStreamingServices.includes(streamingOption.service.id);
     }) ?? null;
   }
 

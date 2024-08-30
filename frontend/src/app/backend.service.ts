@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
-import { StreamingService } from './models/streaming-service.model';
+import { StreamingOptionData } from './models/streaming-service.model';
 import { CountryNames } from './models/countries.model';
 import { Shows } from './models/shows.model';
 
@@ -26,8 +26,8 @@ export class BackendService {
     );
   }
 
-  fetchStreamingServices(country: string): Observable<StreamingService[] | null> {
-    return this.http.get<StreamingService[]>(`${this.Root_URL}/countries/streaming-services/${country}`).pipe(
+  fetchStreamingOptions(country: string): Observable<StreamingOptionData[] | null> {
+    return this.http.get<StreamingOptionData[]>(`${this.Root_URL}/countries/streaming-services/${country}`).pipe(
       catchError(this.handleError)
     );
   }
