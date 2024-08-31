@@ -1,8 +1,11 @@
 <ng-container *ngIf="displayListService.streamingServiceDisplay !== null">
-    <form [formGroup]="displayListService.streamingServiceControls">
-        <div *ngFor="let streamingService of displayListService.streamingServiceDisplay">
-            <label [for]="streamingService.id"><img [src]="streamingService.imageSet.lightThemeImage"></label>
+    <form class="full-height" [formGroup]="displayListService.streamingServiceControls">
+        <div class="stream-list-element" *ngFor="let streamingService of displayListService.streamingServiceDisplay">
             <input type="checkbox" [id]="streamingService.id" [name]="streamingService.name" formControlName="{{ streamingService.id }}" class="visually-hidden">
+            <label [for]="streamingService.id">
+                <img class="light-image" [src]="streamingService.imageSet.lightThemeImage">
+                <img class="dark-image" [src]="streamingService.imageSet.darkThemeImage">
+            </label>
         </div>
     </form>
 </ng-container>
