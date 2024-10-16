@@ -4,23 +4,90 @@
     width: 100%;
 }
 
+/* desktop */
 @media screen and (min-width: 1000px) {
     app-stream-list {
-        float: left;
-        width: 15%;
+        display: inline-block;
+        width: 180px;
+    }
+
+    app-input-bar {
+        height: 5%;
+    }
+    
+    .outer-container {
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .inner-container {
+        width: 100%;
     }
 }
 
+/* mobile */
 @media screen and (max-width: 999px) {
     app-stream-list {
         width: 100%;
         height: 25%;
+        display: none;
+        position: absolute;
+    }
+
+    app-input-bar {
+        height: 15%;
+    }
+
+    .outer-container {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .inner-container {
+        width: 100%;
+    }
+
+    span {
+        position: fixed;
+        top: 90%;
+        margin: 0 auto;
+        border-style: solid;
+        border-color: #000000;
+        border-width: 1px;
+        border-radius: 100%;
+    }
+
+    .arrow {
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 3px;
+    }
+    
+    .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    }
+    
+    .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
     }
 }
 
+.outer-container {
+    display: flex;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 app-stream-list {
-    display: block;
     background-color: black;
+    color: #FFFFFF;
     /*width: 100%;*/
     height: 100%;
     /*padding: 10px;*/
@@ -29,10 +96,10 @@ app-stream-list {
 
 app-input-bar {
     display: block;
-    background-color: #C9E4DE;
+    background-color: #4988B3;
     padding: 10px;
     width: 100%;
-    height: 5%;
+    /*height: 5%;*/
 }
 
 .overlay {

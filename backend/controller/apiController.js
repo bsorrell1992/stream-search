@@ -23,9 +23,10 @@ exports.getCountries = async (req, res) => {
 
 exports.getStreamingServices = async (req, res) => {
     const targetCountry = req.params.country;
-    if (!(await validateCountry(targetCountry))) return res.status(400).send("Country code not found");
 
     try {
+        if (!(await validateCountry(targetCountry))) return res.status(400).send("Country code not found");
+
         const countries = await loadCountries();        
         streamingServices = countries[targetCountry].services;
         streamingServices.sort(nameComparator);
@@ -39,9 +40,10 @@ exports.getStreamingServices = async (req, res) => {
 exports.getShows = async (req, res) => {
     const country = req.params.country,
         title = req.params.title;
-    if (!(await validateCountry(country)) || !validateTitle(title)) return res.status(400).send("Invalid input");
 
     try {
+        if (!(await validateCountry(country)) || !validateTitle(title)) return res.status(400).send("Invalid input");
+
         let shows = await loadShows(country, title);
         transformStreamingOptions(shows, country);
         shows.sort(showComparator);

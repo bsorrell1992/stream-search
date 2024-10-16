@@ -5,6 +5,11 @@
         </div>
     </div>
 </ng-container>
-<app-stream-list></app-stream-list>
-<app-input-bar></app-input-bar>
-<router-outlet></router-outlet>
+<div class="outer-container">
+    <app-stream-list></app-stream-list>
+    <div class="inner-container">
+        <app-input-bar></app-input-bar>
+        <router-outlet></router-outlet>
+    </div>
+    <span><i class="arrow up"></i></span>
+</div>

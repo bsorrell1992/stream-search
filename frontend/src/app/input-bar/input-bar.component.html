@@ -1,30 +1,20 @@
-<form [formGroup]="showForm">
+<form [formGroup]="showForm" class="input-bar-container justify-content-center align-items-center">
     <select #countrySelect name="country" id="country" formControlName="country" (change)="onChange(countrySelect.value)">
         <option *ngFor="let country of countryNames" [value]="country.countryCode">
             {{ country.name }}
         </option>
     </select>
-    <input type="text" id="show-title" name="show-title" formControlName="title" required>
+    <div class="title-input-container">
+        <div class="title-input-error-messages" *ngIf="countryNames === null || (title.invalid && (title.dirty || title.touched))">
+            <span *ngIf="title.hasError('whitespace') || title.hasError('required')">
+                This field cannot be left blank
+            </span>
+            <span *ngIf="countryNames === null">
+                An error occurred while retrieving country data
+            </span>
+        </div>
+        <input type="text" id="show-title" name="show-title" formControlName="title" placeholder="Type title here..." required>
+    </div>
     <input type="submit" value="Search" routerLink="/home/shows" [queryParams]="{ country: country.value, search: title.value }" [disabled]="!showForm.valid">
-    <div *ngIf="countryNames === null || (title.invalid && (title.dirty || title.touched))">
-        <span *ngIf="title.hasError('required')">
-            Title is required
-        </span>
-        <span *ngIf="title.hasError('whitespace') && !title.hasError('required')">
-            Title must have at least one non-space character
-        </span>
-        <span *ngIf="countryNames === null">
-            An error occurred while retrieving country data
-        </span>
-    </div>
-</form>
-<form [formGroup]="showTypeService.showTypeForm">
-    <div>
-        <label for="series">Series</label>
-        <input type="checkbox" id="series" name="series" formControlName="series">
-    </div>
-    <div>
-        <label for="movie">Movie</label>
-        <input type="checkbox" id="movie" name="movie" formControlName="movie">
-    </div>
+    <input type="button" routerLink="/home" value="Clear Search">
 </form>

@@ -4,8 +4,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { ShowListService } from '../show-list.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ResultsListService } from '../results-list.service';
-import { Show, Shows } from '../models/shows.model';
-import { ShowTypeService } from '../show-type.service';
+import { Shows } from '../models/shows.model';
 
 @Component({
   selector: 'app-show-list',
@@ -17,7 +16,6 @@ import { ShowTypeService } from '../show-type.service';
 export class ShowListComponent {
   constructor(public showListService: ShowListService,
     private resultsListService: ResultsListService,
-    private showTypeService: ShowTypeService,
     private router: Router,
     private route: ActivatedRoute) {
     route.queryParamMap.subscribe((params: ParamMap): void => {
@@ -34,6 +32,6 @@ export class ShowListComponent {
   }
 
   protected get showList(): Shows | null {
-    return this.showListService.shows?.filter((show: Show): boolean => this.showTypeService.isSelected(show.showType)) ?? null;
+    return this.showListService.getFilteredShows();
   }
 }

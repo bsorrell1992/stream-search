@@ -5,7 +5,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validato
 import { ShowListService } from '../show-list.service';
 import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { CountryNamesService } from '../country-names.service';
-import { ShowTypeService } from '../show-type.service';
 
 @Component({
   selector: 'app-input-bar',
@@ -29,7 +28,6 @@ export class InputBarComponent {
   constructor(protected countryNamesService: CountryNamesService,
     protected displayListService: DisplayListService,
     protected showListService: ShowListService,
-    protected showTypeService: ShowTypeService,
     private route: ActivatedRoute) {
       route.queryParamMap.subscribe((params: ParamMap): void => {
         const countryParam = params.get('country');

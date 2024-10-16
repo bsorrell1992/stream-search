@@ -5,16 +5,29 @@ label {
     justify-content: center;
     align-items: center;
     padding: 5px;
+}
+
+input + label {
     background-color: #FFFFFF;
 }
 
-label:hover {
+input + label:hover, input:checked + label:hover {
     cursor: grab;
+    /*background-image: linear-gradient(#ff000033, #00ff0033, #0000ff33);*/
     background-color: #8ce2f5;
+    /*background-color: #FFFFFF;*/
 }
 
-label:active {
+input + label:active, input:checked + label:active {
     cursor: grabbing;
+}
+
+input + label:active {
+    background-color: #4988B3;
+}
+
+input:checked + label:active {
+    background-color: #FFFFFF;
 }
 
 input:checked + label {

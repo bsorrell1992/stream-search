@@ -3,3 +3,7 @@ app-root {
     display: block;
     height: 100vh;
 }
+
+html, body {
+    font-family: 'Afacad Flux', Verdana, sans-serif;
+}

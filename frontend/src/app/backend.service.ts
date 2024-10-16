@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of } from 'rxjs';
 import { StreamingOptionData } from './models/streaming-service.model';
@@ -11,7 +11,7 @@ import { Shows } from './models/shows.model';
 export class BackendService {
   readonly Root_URL: string;
   constructor(public http: HttpClient) {
-    this.Root_URL = "http://localhost:8080/api";
+    this.Root_URL = "https://api.streamsearch.redhousetech.com";
   }
 
   fetchShows(input: { title: string, country: string }): Observable<Shows | null> {

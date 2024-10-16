@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'; 
 import { FormControl, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { StreamingOptionData } from './models/streaming-service.model';
+import { StreamingOptionData, StreamingOptions } from './models/streaming-service.model';
 import { BackendService } from './backend.service';
 import { SpinnerService } from './spinner.service';
 
@@ -74,5 +74,14 @@ export class DisplayListService {
     this.backendService.fetchStreamingOptions(selectedCountryCode).subscribe((streamingServices: StreamingOptionData[] | null): void => {
       this.streamingServiceDisplay = streamingServices;
     });
+  }
+
+  hasCheckedOptions(streamingOptions: StreamingOptions): boolean {
+    const checkedOptions: string[] = this.getSelectedStreamingServices();
+    for (const streamingOption of streamingOptions) {
+      if (checkedOptions.includes(streamingOption.service.id)) return true;
+    }
+
+    return false;
   }
 }
