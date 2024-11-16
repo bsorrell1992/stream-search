@@ -21,9 +21,9 @@ export class ShowListElementComponent {
   get date(): string {
     switch (this.show.showType) {
       case 'movie':
-        return ' (' + this.show.releaseYear + ')';
+        return '' + this.show.releaseYear;
       case 'series':
-        return ' (' + this.show.firstAirYear + (this.show.lastAirYear !== this.show.firstAirYear ? '-' + this.show.lastAirYear : '') + ')';
+        return '' + this.show.firstAirYear + (this.show.lastAirYear !== this.show.firstAirYear ? '-' + this.show.lastAirYear : '');
     }
   }
 

@@ -1,3 +1,7 @@
+form {
+    overflow-y: auto;
+}
+
 label {
     width: 100%;
     height: 100%;
@@ -7,19 +11,49 @@ label {
     padding: 5px;
 }
 
+.sle-stacked-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.sle-stacked-buttons > :first-child {
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+}
+
+input[type="button"] {
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    background-color: #FFFFFF;
+    font-size: x-large;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+    background-color: #4988B3;
+    color: #FFFFFF;
+}
+
+input[type="button"]:active {
+    cursor: pointer;
+}
+
 input + label {
     background-color: #FFFFFF;
 }
 
 input + label:hover, input:checked + label:hover {
-    cursor: grab;
+    cursor: pointer;
     /*background-image: linear-gradient(#ff000033, #00ff0033, #0000ff33);*/
     background-color: #8ce2f5;
     /*background-color: #FFFFFF;*/
 }
 
 input + label:active, input:checked + label:active {
-    cursor: grabbing;
+    cursor: pointer;
 }
 
 input + label:active {

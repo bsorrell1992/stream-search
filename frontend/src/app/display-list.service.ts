@@ -84,4 +84,19 @@ export class DisplayListService {
 
     return false;
   }
+
+  private setAll(newValue: boolean) {
+    const controls = this.streamingServiceControls.controls;
+    for (const control in controls) {
+      controls[control].setValue(newValue);
+    }
+  }
+
+  selectAll() {
+    this.setAll(true);
+  }
+
+  deselectAll() {
+    this.setAll(false);
+  }
 }

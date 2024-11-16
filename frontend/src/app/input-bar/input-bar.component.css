@@ -20,12 +20,17 @@ input {
     border: none;
 }
 
+input[type='text'] {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
 .title-input-error-messages {
     position: absolute;
 }
 
 /* desktop */
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 641px) {
     .input-bar-container {
         display: flex;
         flex-direction: row;
@@ -41,7 +46,7 @@ input {
     
     .title-input-error-messages {
         position: absolute;
-        top: 90%;
+        top: 75%;
     }
     
     input[type='submit'] {
@@ -50,7 +55,7 @@ input {
 }
 
 /* mobile */
-@media screen and (max-width: 999px) {
+@media screen and (max-width: 640px) {
     .input-bar-container {
         display: grid;
         grid-template-columns: auto auto;
@@ -58,7 +63,7 @@ input {
     }
 
     .title-input-error-messages {
-        bottom: 90%;
+        bottom: 75%;
     }
 
     input[type='submit'] {

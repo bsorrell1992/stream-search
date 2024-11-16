@@ -4,10 +4,12 @@
         <p>
             {{ title }} can be found on {{ streamingOptions.length === 1 ? 'this streaming service' : 'these streaming services'}}:
         </p>
-        <app-results-list-element
-            *ngFor="let streamingService of streamingOptions"
-            [streamingService]="streamingService"
-        ></app-results-list-element>
+        <div class="results-list-container">
+            <app-results-list-element
+                *ngFor="let streamingService of streamingOptions"
+                [streamingService]="streamingService"
+            ></app-results-list-element>
+        </div>
     </ng-container>
     <ng-container *ngIf="streamingOptions.length == 0">
         <p>

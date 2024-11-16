@@ -1,27 +1,29 @@
 <div class="card sle-container">
     <img [src]="poster" class="card-img-top">
     <div class="card-body sle-main">
-        <h3 class="card-title sle-title">{{ title + date }}</h3>
-        <h4 class="card-subtitle text-body-secondary">{{ showType }}</h4>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <div>
-                    <h5 class="card-text">{{ creatorsOrDirectors }}</h5>
-                    <p class="card-text">{{ creatorsOrDirectorsList }}</p>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div>
-                    <h5 class="card-text">Cast</h5>
-                    <p class="card-text">{{ cast }}</p>
-                </div>
-            </li>
-            <li class="list-group-item">
-                <div class="sle-description">
-                    <h5 class="card-text">Description</h5>
-                    <p class="card-text">{{ overview }}</p>
-                </div>
-            </li>
-        </ul>
+        <div class="sle-main-scroll">
+            <h3 class="card-title sle-title">{{ title }}</h3>
+            <h4 class="card-subtitle sle-date text-body-secondary">{{ date }}</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div>
+                        <h5 class="card-text">{{ creatorsOrDirectors }}</h5>
+                        <p class="card-text">{{ creatorsOrDirectorsList }}</p>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div>
+                        <h5 class="card-text">Cast</h5>
+                        <p class="card-text">{{ cast }}</p>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sle-description">
+                        <h5 class="card-text">Description</h5>
+                        <p class="card-text">{{ overview }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

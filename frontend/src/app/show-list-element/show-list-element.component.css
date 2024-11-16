@@ -5,18 +5,54 @@
 
 img {
     height: 40%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .sle-main {
-    height: 50%;
+    height: 60%;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 0;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.sle-main-scroll {
     overflow-y: auto;
 }
 
 .sle-title {
-    height: 25%;
+    /*height: 25%;*/
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 0;
+}
+
+.sle-date {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: larger;
+}
+
+ul {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: #dee2e6;
+    margin-top: 0.5rem;
+}
+
+.sle-show-type {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: larger;
+}
+
+h5 {
+    margin-bottom: 0;
 }
 
 .sle-description {

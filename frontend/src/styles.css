@@ -7,3 +7,19 @@ app-root {
 html, body {
     font-family: 'Afacad Flux', Verdana, sans-serif;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #9c9c9c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #708090;
+}

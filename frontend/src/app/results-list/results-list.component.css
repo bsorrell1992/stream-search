@@ -1,18 +1,47 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: 95%;
+    /*overflow-y: auto;*/
+}
+
+p {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    font-size: larger;
+}
+
+.results-list-container {
+    padding: 20px;
     overflow-y: auto;
 }
 
-.rl-container {
-    height: 100%;
-    overflow-y: auto;
+@media screen and (min-width: 641px) {
+    .results-list-container {
+        display: grid;
+        grid-auto-rows: 60%;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
+        row-gap: 20px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .results-list-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .results-list-container {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 app-results-list-element {
     display: inline-block;
-    height: 30%;
-    width: 25%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 img {

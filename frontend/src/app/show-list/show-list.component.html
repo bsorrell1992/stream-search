@@ -1,24 +1,24 @@
-<div class="show-list-container">
-    <ng-container *ngIf="showList !== null">
-        <ng-container *ngIf="showList.length > 0">
-            <p>
-                Select one of the following shows:
-            </p>
+<ng-container *ngIf="showList !== null">
+    <ng-container *ngIf="showList.length > 0">
+        <p>
+            Select one of the following shows:
+        </p>
+        <div class="show-list-container">
             <app-show-list-element
                 *ngFor="let show of showList"
                 [show]="show"
                 (click)="updateView(show.id)"
             ></app-show-list-element>
-        </ng-container>
-        <ng-container *ngIf="showList.length === 0">
-            <p>
-                No shows found. Try searching with a different title.
-            </p>
-        </ng-container>
+        </div>
     </ng-container>
-    <ng-container *ngIf="showList === null">
+    <ng-container *ngIf="showList.length === 0">
         <p>
-            An error occurred while retrieving shows.
+            No shows found. Try searching with a different title.
         </p>
     </ng-container>
-</div>
+</ng-container>
+<ng-container *ngIf="showList === null">
+    <p>
+        An error occurred while retrieving shows.
+    </p>
+</ng-container>

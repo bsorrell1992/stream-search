@@ -1,20 +1,22 @@
 <div class="card rle-container">
     <a [href]="streamingService.link" target="_blank" class="streaming-option-link"><img [src]="streamingService.service.imageSet.lightThemeImage" class="card-img-top logo"></a>
-    <div class="card-body">
-        <h5 class="card-title">{{ streamingService.service.name }}</h5>
-        <div class="option-types-list">
-            <div class="list-group-item" *ngFor="let optionType of optionTypes">
-                <p>{{ optionType }}</p>
-                <ng-container *ngIf="optionType === 'Addons'">
-                    <div>
-                        <ng-container *ngFor="let addon of addons">
-                            <a [href]="addon.homePage">
-                                <img *ngIf="addon.imageSet.lightThemeImage !== ''" [src]="addon.imageSet.lightThemeImage" class="addon-logo">
-                                <p *ngIf="addon.imageSet.lightThemeImage === ''">{{ addon.name }}</p>
-                            </a>
-                        </ng-container>
-                    </div>
-                </ng-container>
+    <div class="card-body rle-main">
+        <div class="rle-main-scroll">
+            <h3 class="card-title">{{ streamingService.service.name }}</h3>
+            <div class="list-group list-group-flush option-types-list">
+                <div class="list-group-item" *ngFor="let optionType of optionTypes">
+                    <p class="rle-option-type">{{ optionType }}</p>
+                    <ng-container *ngIf="optionType === 'Addons'">
+                        <div class="rle-addons">
+                            <ng-container *ngFor="let addon of addons">
+                                <a [href]="addon.homePage" class="rle-addon-link">
+                                    <img *ngIf="addon.imageSet.lightThemeImage !== ''" [src]="addon.imageSet.lightThemeImage" class="addon-logo">
+                                    <p *ngIf="addon.imageSet.lightThemeImage === ''" class="rle-addon-text">{{ addon.name }}</p>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
         </div>
     </div>
