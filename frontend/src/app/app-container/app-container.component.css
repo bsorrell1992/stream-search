@@ -6,13 +6,18 @@
 
 /* desktop */
 @media screen and (min-width: 641px) {
+    .mobile {
+        display: none !important;
+    }
+
     app-stream-list {
         display: inline-block;
         width: 180px;
+        height: 100%;
     }
 
     app-input-bar {
-        height: 5%;
+        height: 4rem;
     }
     
     .outer-container {
@@ -23,19 +28,27 @@
     .inner-container {
         width: 100%;
     }
+
+    button[type="button"] {
+        display: none;
+    }
 }
 
 /* mobile */
 @media screen and (max-width: 640px) {
+    .desktop {
+        display: none;
+    }
+
     app-stream-list {
         width: 100%;
-        height: 25%;
-        display: none;
+        bottom: 0px;
         position: absolute;
+        z-index: 3;
     }
 
     app-input-bar {
-        height: 15%;
+        height: 6rem;
     }
 
     .outer-container {
@@ -47,31 +60,32 @@
         width: 100%;
     }
 
-    span {
-        position: fixed;
-        top: 90%;
-        margin: 0 auto;
-        border-style: solid;
-        border-color: #000000;
-        border-width: 1px;
-        border-radius: 100%;
+    button {
+        position: absolute;
+        /*top: 90%;*/
+        /*margin: 0 auto;*/
+        align-self: center;
+        display: inline-block;
+        border: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: #00000000;
+        box-sizing: content-box;
+        z-index: 3;
     }
 
-    .arrow {
-        border: solid black;
-        border-width: 0 3px 3px 0;
+    img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .stream-list-overlay {
+        position: absolute;
         display: inline-block;
-        padding: 3px;
-    }
-    
-    .up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
-    }
-    
-    .down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+        width: 100%;
+        height: 100%;
+        background-color: #00000055;
+        z-index: 2;
     }
 }
 
@@ -89,7 +103,6 @@ app-stream-list {
     background-color: black;
     color: #FFFFFF;
     /*width: 100%;*/
-    height: 100%;
     /*padding: 10px;*/
     border: 1px solid black;
 }

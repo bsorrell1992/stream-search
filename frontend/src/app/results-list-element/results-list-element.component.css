@@ -21,6 +21,26 @@
     border-bottom-right-radius: 10px;
 }
 
+@media screen and (max-width: 640px) {
+    .streaming-option-link {
+        height: 40%;
+    }
+
+    .rle-main {
+        padding-top: 0;
+    }
+
+    h3 {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 641px) {
+    .streaming-option-link {
+        height: 25%;
+    }
+}
+
 .rle-main-scroll {
     overflow-y: auto;
     height: 100%;
@@ -65,8 +85,4 @@ h3 {
 
 .rle-addon-text {
     font-size: larger;
-}
-
-.streaming-option-link {
-    height: 25%;
 }

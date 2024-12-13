@@ -22,8 +22,37 @@ label {
     border-bottom-width: 1px;
 }
 
+/* mobile */
+@media screen and (max-width: 640px) {
+    .sle-stacked-buttons {
+        display: none;
+    }
+
+    input[type="button"] {
+        height: 100%;
+    }
+
+    .stream-list-element {
+        height: 60px;
+    }
+}
+
+/* desktop */
+@media screen and (min-width: 641px) {
+    .sle-unstacked-button {
+        display: none;
+    }
+
+    input[type="button"] {
+        height: 50%;
+    }
+
+    .stream-list-element {
+        height: 80px;
+    }
+}
+
 input[type="button"] {
-    height: 50%;
     width: 100%;
     margin: 0;
     border: 0;
@@ -74,7 +103,6 @@ img {
 }
 
 .stream-list-element {
-    height: 6%;
     border-bottom: 1px solid #000000;
 }
 

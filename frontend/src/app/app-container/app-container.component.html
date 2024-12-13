@@ -5,11 +5,30 @@
         </div>
     </div>
 </ng-container>
-<div class="outer-container">
-    <app-stream-list></app-stream-list>
+<ng-container *ngIf="showStreamList">
+    <div class="stream-list-overlay"></div>
+</ng-container>
+<div class="outer-container" #container>
+    <app-stream-list
+        [@animateStreamList]="componentWidth > 640 ? 'desktop' : showStreamList"
+        (@animateStreamList.start)="displayOn($event)"
+        (@animateStreamList.done)="displayOff($event)"
+        [@.disabled]="isPaused"></app-stream-list>
     <div class="inner-container">
         <app-input-bar></app-input-bar>
         <router-outlet></router-outlet>
     </div>
-    <span><i class="arrow up"></i></span>
+    <button type="button"
+        [class.arrow-up]="!showStreamList"
+        [class.arrow-down]="showStreamList"
+        (click)="handleClick()"
+        [@animateButton]="showStreamList"
+        [@.disabled]="isPaused">
+        <img src="./assets/up-chevron.png"
+            [style.display]="!showStreamList ? 'inline-block' : 'none'">
+        <img src="./assets/down-chevron.png"
+            [style.display]="showStreamList ? 'inline-block' : 'none'">
+        <!-- https://www.flaticon.com/free-icons/up-arrow -->
+        <!-- https://www.flaticon.com/free-icons/down-arrow -->
+    </button>
 </div>

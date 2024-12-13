@@ -7,8 +7,6 @@
 select {
     display: inline-block;
     color: white;
-    /*background-color: #2877b0;*/
-    /*background-color: #4988B3;*/
     background-color: #7393B3;
     border-style: solid;
     border-color: white;
@@ -59,11 +57,11 @@ input[type='text'] {
     .input-bar-container {
         display: grid;
         grid-template-columns: auto auto;
-        column-gap: 2%;
+        column-gap: 1rem;
     }
 
     .title-input-error-messages {
-        bottom: 75%;
+        top: -1rem;
     }
 
     input[type='submit'] {

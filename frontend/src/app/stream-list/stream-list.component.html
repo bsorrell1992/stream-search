@@ -4,6 +4,12 @@
             <input type="button" value="Select All" (click)="displayListService.selectAll()">
             <input type="button" value="Deselect All" (click)="displayListService.deselectAll()">
         </div>
+        <div class="stream-list-element sle-unstacked-button">
+            <input type="button" value="Select All" (click)="displayListService.selectAll()">
+        </div>
+        <div class="stream-list-element sle-unstacked-button">
+            <input type="button" value="Deselect All" (click)="displayListService.deselectAll()">
+        </div>
         <div class="stream-list-element" *ngFor="let streamingService of displayListService.streamingServiceDisplay">
             <input type="checkbox" [id]="streamingService.id" [name]="streamingService.name" formControlName="{{ streamingService.id }}" class="visually-hidden">
             <label [for]="streamingService.id">

@@ -1,8 +1,6 @@
 :host {
     display: flex;
     flex-direction: column;
-    height: 95%;
-    /*overflow-y: auto;*/
 }
 
 p {
@@ -14,15 +12,40 @@ p {
 .results-list-container {
     padding: 20px;
     overflow-y: auto;
+    display: grid;
+}
+
+@media screen and (max-width: 640px) {
+    :host {
+        height: 85%;
+    }
+
+    .results-list-container {
+        grid-auto-rows: 150px;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 1em;
+    }
+
+    img {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 641px) {
+    :host {
+        height: 95%;
+    }
+
     .results-list-container {
-        display: grid;
         grid-auto-rows: 60%;
         grid-template-columns: repeat(3, 1fr);
         column-gap: 20px;
         row-gap: 20px;
+    }
+
+    img {
+        width: fit-content;
     }
 }
 
@@ -44,7 +67,14 @@ app-results-list-element {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-img {
-    width: 100%;
+.results-list-poster-container {
     height: 50%;
+    width: 100%;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    height: 100%;
 }

@@ -3,12 +3,31 @@
         <p>
             Select one of the following shows:
         </p>
-        <div class="show-list-container">
+        <div class="show-list-container-desktop">
             <app-show-list-element
                 *ngFor="let show of showList"
                 [show]="show"
                 (click)="updateView(show.id)"
             ></app-show-list-element>
+        </div>
+        <div id="showListCarousel" class="show-list-container-mobile carousel slide">
+            <div class="carousel-inner">
+                <app-show-list-element
+                    *ngFor="let show of showList; let i = index"
+                    [show]="show"
+                    (click)="updateView(show.id)"
+                    class="carousel-item"
+                    [class.active]="i === 0"
+                ></app-show-list-element>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#showListCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#showListCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </ng-container>
     <ng-container *ngIf="showList.length === 0">
