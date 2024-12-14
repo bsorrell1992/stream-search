@@ -35,6 +35,10 @@
     .streaming-option-link {
         height: 25%;
     }
+
+    .rle-main-scroll {
+        padding-top: 1rem;
+    }
 }
 
 .rle-main {
@@ -44,7 +48,6 @@
 .rle-main-scroll {
     overflow-y: auto;
     height: 100%;
-    padding-top: 1rem;
 }
 
 h3 {
