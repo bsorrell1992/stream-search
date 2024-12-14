@@ -38,7 +38,7 @@ p {
     }
 
     .results-list-container {
-        grid-auto-rows: 60%;
+        grid-auto-rows: max(200px, 60%);
         grid-template-columns: repeat(3, 1fr);
         column-gap: 20px;
         row-gap: 20px;
