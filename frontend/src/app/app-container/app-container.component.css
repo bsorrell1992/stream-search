@@ -122,3 +122,8 @@ app-input-bar {
     background-color: white;
     opacity: 50%;
 }
+
+.spinner-border {
+    height: 3rem;
+    width: 3rem;
+}
